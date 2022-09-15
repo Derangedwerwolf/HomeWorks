@@ -40,7 +40,7 @@ def normalize(file_name):
         new_name = re.sub(r'[!@#$%^&*]', "_", new_name)
         jjj.rename(os.path.join(os.path.dirname(jjj),new_name))
 
-def search_list(name):
+def search_list(name, path_to_folder):
     indx = 0
     for file_category in files_collections.values():
         for iii in file_category:
