@@ -1,8 +1,8 @@
-import shutil
-import sys
+from pathlib import Path
 import os
 import re
-from pathlib import Path
+import shutil
+import sys
 
 TRANS = {
     1072: 'a' , 1040: 'A', 1073: 'b', 1041: 'B', 1074: 'v', 
