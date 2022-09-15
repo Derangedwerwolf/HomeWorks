@@ -36,7 +36,7 @@ def normalize(file_name):
         if jjj.is_dir() and any(Path(jjj).iterdir()):
             normalize(jjj)
         
-        new_name = (os.path.basename(jjj).translate(TRANS))
+        new_name = os.path.basename(jjj).translate(TRANS)
         new_name = re.sub(r'[!@#$%^&*]', "_", new_name)
         jjj.rename( os.path.dirname(jjj) + '/' + new_name)
 
