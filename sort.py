@@ -72,8 +72,7 @@ def folder_sort(path_to_folder):
             
             if str(files_collections['archives']).find(file_ext.upper()) != -1:
                 new_archive_folder = os.path.basename(iii).split('.')[0]
-
-                shutil.unpack_archive(file_transfer_to/iii, file_transfer_to/new_archive_folder)
+                shutil.unpack_archive(file_transfer_to/os.path.basename(iii), file_transfer_to/new_archive_folder)
 
 def main():
     if len(sys.argv) < 2:
