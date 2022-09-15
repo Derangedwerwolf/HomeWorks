@@ -54,25 +54,25 @@ def search_list(name):
         indx += 1
     return 0
 
-def folder_sort(path_to_folder, path_to_folder_origin):
-    for iii in path_to_folder.iterdir():
+def folder_sort(path_to_folder: Path, path_to_folder_origin: Path):
+    for file in path_to_folder.iterdir():
         
-        if iii.is_dir():
-            folder_sort(iii,)
+        if file.is_dir():
+            folder_sort(file,)
             
-            if not any(Path(iii).iterdir()):
-                iii.rmdir()
+            if not any(Path(file).iterdir()):
+                file.rmdir()
         
-        elif iii.is_file():
-            file_ext = (os.path.splitext(iii))[-1].replace('.', '')
+        elif file.is_file():
+            file_ext = (os.path.splitext(file))[-1].replace('.', '')
             file_transfer_to = search_list(file_ext, path_to_folder_origin)
             
             if file_transfer_to:
-                os.replace(path_to_folder/iii, file_transfer_to/os.path.basename(iii))
+                os.replace(path_to_folder/file, file_transfer_to/os.path.basename(file))
             
             if str(files_collections['archives']).find(file_ext.upper()) != -1:
-                new_archive_folder = os.path.basename(iii).split('.')[0]
-                shutil.unpack_archive(file_transfer_to/os.path.basename(iii), file_transfer_to/new_archive_folder)
+                new_archive_folder = os.path.basename(file).split('.')[0]
+                shutil.unpack_archive(file_transfer_to/os.path.basename(file), file_transfer_to/new_archive_folder)
 
 def main():
     if len(sys.argv) < 2:
