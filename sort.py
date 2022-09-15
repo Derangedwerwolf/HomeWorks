@@ -38,21 +38,13 @@ def normalize(file_name):
         if jjj.is_dir() and any(Path(jjj).iterdir()):
             normalize(jjj)
         
-        #new_name = os.path.basename(jjj).translate(TRANS).replace('/[!@#$%^&*]/g', "")
         new_name = (os.path.basename(jjj).translate(TRANS))
-        print(new_name)
         new_name = re.sub(r'[!@#$%^&*]', "", new_name)
-        print(new_name)
-        #print(new_name)
-        #print(os.path.basename(jjj).translate(TRANS).replace('/[!@#$%^&*]/g', ""))
         jjj.rename( os.path.dirname(jjj) + '/' + new_name)
-        #print(jjj)
-        #os.rename(iii, new)
 
 def search_list(name):
     indx = 0
     for file_category in files_collections.values():
-        #print(file_category)
         for iii in file_category:
             if name.lower() == iii.lower():
                 add_path = list(files_collections.keys())[indx]
@@ -61,7 +53,6 @@ def search_list(name):
                     (path_to_folder/add_path).mkdir()        
 
                 return (path_to_folder/add_path)
-        
         indx += 1
     return 0
 
@@ -86,34 +77,17 @@ def folder_sort(path_to_folder):
 
                 shutil.unpack_archive(file_transfer_to/iii, file_transfer_to/new_archive_folder)
 
-
-#search_list((os.path.splitext('work.txt'))[-1].replace('.', ''))
-#print((os.path.splitext('work.txt'))[-1].replace('.', ''))
-
-# print(search_list('jar'))
-# print(any(Path('D:\\').iterdir()))
-# print(list(files_collections.keys())[0])
-
-
 def main():
-    # if len(sys.argv) < 2:
-    #     print('Enter path tofolder which should be cleaned')
-    #     exit()
+    if len(sys.argv) < 2:
+        print('Enter path tofolder which should be cleaned')
+        exit()
     
-    #path_to_folder = sys.argv[1]
-    
+    path_to_folder = sys.argv[1]
     
     if not (os.path.exists(path_to_folder) and Path(path_to_folder).is_dir()):
         exit()
     
-    normalize(path_to_folder)
-    #folder_sort(path_to_folder)
+    folder_sort(path_to_folder)
     
-
 if __name__ == '__main__':
     exit(main())
-
-# path_to_folder = Path('D:\\Новая папка')
-# print(search_list('jar'))
-
-#os.replace(path_to_folder/'text.txt', 'D:\\Новая папка\\documents\\text.txt');
