@@ -38,14 +38,14 @@ def normalize(file_name):
         
         new_name = os.path.basename(jjj).translate(TRANS)
         new_name = re.sub(r'[!@#$%^&*]', "_", new_name)
-        jjj.rename( os.path.dirname(jjj) + '/' + new_name)
+        jjj.rename( os.path.join(os.path.dirname(jjj)),new_name)
 
 def search_list(name):
     indx = 0
     for file_category in files_collections.values():
         for iii in file_category:
             if name.lower() == iii.lower():
-                add_path = list(files_collections.keys())[indx]
+                add_path = list(files_collections)[indx]
                 
                 if not (os.path.exists(path_to_folder/add_path)):
                     (path_to_folder/add_path).mkdir()        
@@ -83,7 +83,8 @@ def main():
     
     if not (os.path.exists(path_to_folder) and Path(path_to_folder).is_dir()):
         exit()
-    
+        
+    normalize(path_to_folder)
     folder_sort(path_to_folder, path_to_folder)
     
 if __name__ == '__main__':
