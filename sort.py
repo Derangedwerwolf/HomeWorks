@@ -38,7 +38,7 @@ def normalize(file_name):
         
         new_name = os.path.basename(jjj).translate(TRANS)
         new_name = re.sub(r'[!@#$%^&*]', "_", new_name)
-        jjj.rename( os.path.join(os.path.dirname(jjj)),new_name)
+        os.path.join(os.path.dirname(jjj)),new_name)
 
 def search_list(name):
     indx = 0
