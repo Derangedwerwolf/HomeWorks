@@ -30,8 +30,6 @@ files_collections = {
     'archives' : ['ZIP', 'GZ', 'TAR']
 }
 
-path_to_folder = Path('D:\\Новая папка')
-
 def normalize(file_name):
     for jjj in file_name.iterdir():
         
