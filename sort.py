@@ -79,7 +79,7 @@ def main():
         print('Enter path tofolder which should be cleaned')
         exit()
     
-    path_to_folder = sys.argv[1]
+    path_to_folder = Path(sys.argv[1])
     
     if not (os.path.exists(path_to_folder) and Path(path_to_folder).is_dir()):
         exit()
