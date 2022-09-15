@@ -31,20 +31,20 @@ files_collections = {
 }
 
 def normalize(file_name):
-    for jjj in file_name.iterdir():
+    for old_file_name in file_name.iterdir():
         
-        if jjj.is_dir() and any(Path(jjj).iterdir()):
-            normalize(jjj)
+        if old_file_name.is_dir() and any(Path(old_file_name).iterdir()):
+            normalize(old_file_name)
         
-        new_name = os.path.basename(jjj).translate(TRANS)
+        new_name = os.path.basename(old_file_name).translate(TRANS)
         new_name = re.sub(r'[!@#$%^&*]', "_", new_name)
-        jjj.rename(os.path.join(os.path.dirname(jjj),new_name))
+        old_file_name.rename(os.path.join(os.path.dirname(old_file_name),new_name))
 
 def search_list(name, path_to_folder):
     indx = 0
     for file_category in files_collections.values():
-        for iii in file_category:
-            if name.lower() == iii.lower():
+        for file_extension in file_category:
+            if name.lower() == file_extension.lower():
                 add_path = list(files_collections)[indx]
                 
                 path_to_folder = path_to_folder.joinpath(add_path)
