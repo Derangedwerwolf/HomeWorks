@@ -77,7 +77,7 @@ def folder_sort(path_to_folder: Path, path_to_folder_origin: Path):
                 new_archive_folder = os.path.join(file_transfer_to, os.path.basename(file).split('.')[0])
                 try:
                     shutil.unpack_archive(file_transfer_to/os.path.basename(file), new_archive_folder)
-                except UnsupportedFormat:
+                except TypeError:
                     print(f"{file_ext} is unsupported file format")
                     continue
 
