@@ -54,18 +54,18 @@ def search_list(name):
         indx += 1
     return 0
 
-def folder_sort(path_to_folder):
+def folder_sort(path_to_folder, path_to_folder_origin):
     for iii in path_to_folder.iterdir():
         
         if iii.is_dir():
-            folder_sort(iii)
+            folder_sort(iii,)
             
             if not any(Path(iii).iterdir()):
                 iii.rmdir()
         
         elif iii.is_file():
             file_ext = (os.path.splitext(iii))[-1].replace('.', '')
-            file_transfer_to = search_list(file_ext)
+            file_transfer_to = search_list(file_ext, path_to_folder_origin)
             
             if file_transfer_to:
                 os.replace(path_to_folder/iii, file_transfer_to/os.path.basename(iii))
@@ -84,7 +84,7 @@ def main():
     if not (os.path.exists(path_to_folder) and Path(path_to_folder).is_dir()):
         exit()
     
-    folder_sort(path_to_folder)
+    folder_sort(path_to_folder, path_to_folder)
     
 if __name__ == '__main__':
     exit(main())
