@@ -22,7 +22,7 @@ TRANS = {
     1111: 'ji', 1031: 'JI', 1169: 'g', 1168: 'G'
 }
 
-files_collections = {
+FILES_COLLECTIONS = {
     'images'   : ['JPEG', 'PNG', 'JPG', 'SVG'],
     'video'    : ['AVI', 'MP4', 'MOV', 'MKV'],
     'documents': ['DOC', 'DOCX', 'TXT', 'PDF', 'XLSX', 'PPTX'],
@@ -42,10 +42,10 @@ def normalize(file_name):
 
 def search_list(name, path_to_folder):
     indx = 0
-    for file_category in files_collections.values():
+    for file_category in FILES_COLLECTIONS.values():
         for file_extension in file_category:
             if name.lower() == file_extension.lower():
-                add_path = list(files_collections)[indx]
+                add_path = list(FILES_COLLECTIONS)[indx]
                 
                 path_to_folder = path_to_folder.joinpath(add_path)
                 
@@ -73,7 +73,7 @@ def folder_sort(path_to_folder: Path, path_to_folder_origin: Path):
                 file_new_holder = os.path.join(file_transfer_to, os.path.basename(file))
                 os.replace(file, file_new_holder)
             
-            if str(files_collections['archives']).find(file_ext.upper()) != -1:
+            if str(FILES_COLLECTIONS['archives']).find(file_ext.upper()) != -1:
                 new_archive_folder = os.path.join(file_transfer_to, os.path.basename(file).split('.')[0])
                 try:
                     shutil.unpack_archive(file_transfer_to/os.path.basename(file), new_archive_folder)
