@@ -47,10 +47,12 @@ def search_list(name, path_to_folder):
             if name.lower() == iii.lower():
                 add_path = list(files_collections)[indx]
                 
-                if os.path.exists(os.path.join(path_to_folder, add_path)):
-                    (os.path.join(path_to_folder, add_path)).mkdir()        
+                path_to_folder = path_to_folder.joinpath(add_path)
+                
+                if not os.path.exists(path_to_folder):
+                    path_to_folder.mkdir()     
 
-                return os.path.join(path_to_folder, add_path)
+                return path_to_folder
         indx += 1
     return 0
 
@@ -58,7 +60,7 @@ def folder_sort(path_to_folder: Path, path_to_folder_origin: Path):
     for file in path_to_folder.iterdir():
         
         if file.is_dir():
-            folder_sort(file,)
+            folder_sort(file, path_to_folder_origin)
             
             if not any(Path(file).iterdir()):
                 file.rmdir()
@@ -68,7 +70,8 @@ def folder_sort(path_to_folder: Path, path_to_folder_origin: Path):
             file_transfer_to = search_list(file_ext, path_to_folder_origin)
             
             if file_transfer_to:
-                os.replace(path_to_folder/file, file_transfer_to/os.path.basename(file))
+                file_new_holder = os.path.join(file_transfer_to, os.path.basename(file))
+                os.replace(file, file_new_holder)
             
             if str(files_collections['archives']).find(file_ext.upper()) != -1:
                 new_archive_folder = os.path.basename(file).split('.')[0]
