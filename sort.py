@@ -38,7 +38,7 @@ def normalize(file_name):
         
         new_name = os.path.basename(jjj).translate(TRANS)
         new_name = re.sub(r'[!@#$%^&*]', "_", new_name)
-        os.path.join(os.path.dirname(jjj)),new_name)
+        jjj.rename(os.path.join(os.path.dirname(jjj)),new_name)
 
 def search_list(name):
     indx = 0
@@ -47,10 +47,10 @@ def search_list(name):
             if name.lower() == iii.lower():
                 add_path = list(files_collections)[indx]
                 
-                if not (os.path.exists(path_to_folder/add_path)):
-                    (path_to_folder/add_path).mkdir()        
+                if os.path.exists(os.path.join(path_to_folder, add_path)):
+                    (os.path.join(path_to_folder, add_path)).mkdir()        
 
-                return (path_to_folder/add_path)
+                return os.path.join(path_to_folder, add_path)
         indx += 1
     return 0
 
