@@ -1,9 +1,10 @@
+from asyncio import constants
 from pathlib import Path
 import os
 import re
 import shutil
 import sys
-
+import CONSTANS
 
 
 def normalize(file_name):
@@ -12,16 +13,16 @@ def normalize(file_name):
         if old_file_name.is_dir() and any(Path(old_file_name).iterdir()):
             normalize(old_file_name)
         
-        new_name = os.path.basename(old_file_name).translate(TRANS)
+        new_name = os.path.basename(old_file_name).translate(CONSTANS.TRANS)
         new_name = re.sub(r'[!@#$%^&*]', "_", new_name)
         old_file_name.rename(os.path.join(os.path.dirname(old_file_name),new_name))
 
 def search_list(name, path_to_folder):
     indx = 0
-    for file_category in FILES_COLLECTIONS.values():
+    for file_category in CONSTANS.FILES_COLLECTIONS.values():
         for file_extension in file_category:
             if name.lower() == file_extension.lower():
-                add_path = list(FILES_COLLECTIONS)[indx]
+                add_path = list(CONSTANS.FILES_COLLECTIONS)[indx]
                 
                 path_to_folder = path_to_folder.joinpath(add_path)
                 
@@ -49,7 +50,7 @@ def folder_sort(path_to_folder: Path, path_to_folder_origin: Path):
                 file_new_holder = os.path.join(file_transfer_to, os.path.basename(file))
                 os.replace(file, file_new_holder)
             
-            if str(FILES_COLLECTIONS['archives']).find(file_ext.upper()) != -1:
+            if str(CONSTANS.FILES_COLLECTIONS['archives']).find(file_ext.upper()) != -1:
                 new_archive_folder = os.path.join(file_transfer_to, os.path.basename(file).split('.')[0])
                 try:
                     shutil.unpack_archive(file_transfer_to/os.path.basename(file), new_archive_folder)
