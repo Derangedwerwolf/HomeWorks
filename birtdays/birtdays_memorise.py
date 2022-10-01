@@ -18,7 +18,7 @@ def main(users):
             if temporal_date <= next_week:
                 
                 if temporal_date.weekday() in (5, 6):
-                    BIRTHDAY_LIST.weekdays['Monday'] += person_from_users['name']
+                    BIRTHDAY_LIST.weekdays['Monday']юфззутв(person_from_users['name'])
                 
                 BIRTHDAY_LIST.weekdays[calendar.day_name[temporal_date.weekday()]].append(person_from_users['name'])
     else:
