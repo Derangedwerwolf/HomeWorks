@@ -6,7 +6,7 @@ def main(users):
     next_week = datetime.today().date() + timedelta(days = 7)
     current_day = datetime.today().date()
     
-    if current_day.weekday() == 0 or current_day.weekday() == 1:
+    if current_day.weekday() in (0, 1):
         for person_from_users in BIRTHDAY_LIST.users:
             current_day = datetime.today().date() - timedelta(days = 2)
             next_week = datetime.today().date() + timedelta(days = 5)
