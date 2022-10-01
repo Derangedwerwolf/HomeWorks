@@ -1,0 +1,39 @@
+from datetime import datetime, timedelta
+import calendar
+import BIRTHDAY_LIST
+
+def main(users):
+    next_week = datetime.today().date() + timedelta(days = 7)
+    current_day = datetime.today().date()
+    
+    if current_day.weekday() == 0 or current_day.weekday() == 1:
+        for person_from_users in BIRTHDAY_LIST.users:
+            current_day = datetime.today().date() - timedelta(days = 2)
+            
+            if person_from_users['birthday'].month >= current_day.month:
+                temporal_date = person_from_users['birthday']
+                temporal_date = datetime(year=current_day.year, month=temporal_date.month, day=temporal_date.day).date()
+
+            if temporal_date <= next_week:
+                if BIRTHDAY_LIST.weekdays[calendar.day_name[temporal_date.weekday()]]:
+                    BIRTHDAY_LIST.weekdays[calendar.day_name[temporal_date.weekday()]] += ', '
+            
+                BIRTHDAY_LIST.weekdays[calendar.day_name[temporal_date.weekday()]] += person_from_users['name']
+    else:
+        for person_from_users in BIRTHDAY_LIST.users:
+            
+            if person_from_users['birthday'].month >= current_day.month:
+                temporal_date = person_from_users['birthday']
+                temporal_date = datetime(year=current_day.year, month=temporal_date.month, day=temporal_date.day).date()
+
+                if temporal_date <= next_week:
+                    if BIRTHDAY_LIST.weekdays[calendar.day_name[temporal_date.weekday()]]:
+                        BIRTHDAY_LIST.weekdays[calendar.day_name[temporal_date.weekday()]] += ', '
+                
+                    BIRTHDAY_LIST.weekdays[calendar.day_name[temporal_date.weekday()]] += person_from_users['name']
+
+    for step, name in BIRTHDAY_LIST.weekdays.items():
+        print(f'{step}: {name}')
+
+if __name__ == '__main__':
+    exit(main(BIRTHDAY_LIST.users))
