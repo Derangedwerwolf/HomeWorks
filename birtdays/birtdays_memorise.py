@@ -20,8 +20,8 @@ def main(users):
                     BIRTHDAY_LIST.weekdays[calendar.day_name[temporal_date.weekday()]] += ', '
                 
                 if calendar.day_name[temporal_date.weekday()] == 'Saturday' or calendar.day_name[temporal_date.weekday()] == 'Sunday':
-                    BIRTHDAY_LIST.weekdays['Monday] += person_from_users['name']
-                                           
+                    BIRTHDAY_LIST.weekdays['Monday'] += person_from_users['name']
+                
                 BIRTHDAY_LIST.weekdays[calendar.day_name[temporal_date.weekday()]] += person_from_users['name']
     else:
         for person_from_users in BIRTHDAY_LIST.users:
