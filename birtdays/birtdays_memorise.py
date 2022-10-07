@@ -35,4 +35,4 @@ def main(users):
         print(f'{step}: {", ".join(name)}')
 
 if __name__ == '__main__':
-    exit(main(BIRTHDAY_LIST.users))
+    main(BIRTHDAY_LIST.users)
