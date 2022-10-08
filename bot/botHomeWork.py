@@ -1,4 +1,4 @@
-PHONE_BOOK = {'Nothing' : 'is here', 'Igor': '067455857'}
+PHONE_BOOK = {}
 
 def input_error(func):
     """Перевіряємо на помилки"""
