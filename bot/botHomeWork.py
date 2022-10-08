@@ -12,7 +12,6 @@ def input_error(func):
             print('Unexpected incoming data.')
         except IndexError:
             print('Not found')
-        return result
     
     return cheker
 
