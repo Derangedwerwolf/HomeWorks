@@ -74,7 +74,11 @@ def data_splitter(data):
     return name, phone
 
 def data_verification(command):
-    """Розбиваємо отриману стрічку на головні частини"""
+    """
+    Розбиваємо отриману стрічку на головні частини.
+    Після чього перевіряємо валідність команди чи 
+    наявність усіх данних.
+    """
     
     if command in ('hello', 'show all', 'good bye', 'close', 'exit'):
         return commands_list[command.casefold()]()
