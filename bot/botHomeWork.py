@@ -3,9 +3,9 @@ PHONE_BOOK = {}
 def input_error(func):
     """Перевіряємо на помилки"""
     
-    def cheker():
+    def cheker(*args):
         try:
-            result = func()
+            result = func(*args)
         except KeyError:
             print('Unidentified request')
         except ValueError:
@@ -21,24 +21,24 @@ def hello_handler():
     return 'How can I help you'
 
 @input_error
-def add_contact():
+def add_contact(name, phone):
     """Заповнюємо записну книжку"""
     
-    name, phone = input('Enter name and a phone: ').split()
+    #name, phone = input('Enter name and a phone: ').split()
     PHONE_BOOK[name.casefold()] = phone
     return 'New contact added'
 
 @input_error
-def change_contact():
+def change_contact(name, phone):
     """Змінюємо контактні данні"""
     
-    name, phone = [name_in_book for name_in_book in input("Enter name and a new phone: ").split()]
+    #name, phone = [name_in_book for name_in_book in input("Enter name and a new phone: ").split()]
     PHONE_BOOK[name.casefold()] = phone
     return 'Contact changed'
     
 @input_error
-def show_name():
-    name = input('Enter name: ')
+def show_name(name):
+    #name = input('Enter name: ')
     return PHONE_BOOK[name.casefold()]
 
 
@@ -62,17 +62,37 @@ commands_list = {
     'exit' : exit_handler
 }
 
+def data_splitter(command):
+    try:
+        command, accompanying_data = command.split(' ', maxsplit=1)
+        name, phone = accompanying_data.split()
+    except ValueError:
+        print('Oops, you have, probably, forgot something. Please, try again.')
+            
+    return command, name, phone
+
+def data_verification(command):
+    if command in ('hello', 'show all', 'good bye', 'close', 'exit'):
+        return commands_list[command.casefold()]()
+    elif len(command.split()) < 2:
+        return 'Not enough arguments.'
+        #raise UnboundLocalError('Not enough arguments.')
+    else:
+        command, name, phone = [data for data in (data_splitter(command))]
+    
+        if command.casefold() not in commands_list:
+            return 'Command is unrecognised. Please try again.'
+            #raise KeyError('Command is unrecognised. Please try again.')
+        else:
+            return commands_list[command.casefold()](name, phone)
+    
 
 def main():
     """Запускаємо бота"""
     
     while True:
         command = input('Please enter your command: ')
-        if command.casefold() not in commands_list:
-            print('Command is unrecognised. Please try again.')
-            continue
-        else:
-            print(commands_list[command.casefold()]())
+        print(data_verification(command))
 
 
 if __name__ == '__main__':
