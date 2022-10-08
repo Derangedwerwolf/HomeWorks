@@ -22,16 +22,18 @@ def hello_handler():
     return 'How can I help you'
 
 @input_error
-def add_contact(name, phone):
+def add_contact(data):
     """Заповнюємо записну книжку"""
+    name, phone = data_splitter(data)
     
     #name, phone = input('Enter name and a phone: ').split()
     PHONE_BOOK[name.casefold()] = phone
     return 'New contact added'
 
 @input_error
-def change_contact(name, phone):
+def change_contact(data):
     """Змінюємо контактні данні"""
+    name, phone = data_splitter(data)
     
     #name, phone = [name_in_book for name_in_book in input("Enter name and a new phone: ").split()]
     PHONE_BOOK[name.casefold()] = phone
@@ -40,6 +42,8 @@ def change_contact(name, phone):
 @input_error
 def show_name(name):
     #name = input('Enter name: ')
+    if name.strip() not in PHONE_BOOK:
+        return 'This contact does not exist.'
     return PHONE_BOOK[name.casefold()]
 
 
@@ -48,8 +52,7 @@ def show_all():
     
 
 def exit_handler():
-    print('Exit, bye!')
-    quit()
+    return 'Exit, bye!'
     
 
 commands_list = {
@@ -64,28 +67,28 @@ commands_list = {
 }
 
 @input_error
-def data_splitter(command):
-    command, accompanying_data = command.split(' ', maxsplit=1)
-    name, phone = accompanying_data.split()
-    # except ValueError:
-    #     print('Oops, you have, probably, forgot something. Please, try again.')
+def data_splitter(data):
+    
+    name, phone = data.split()
             
-    return command, name, phone
+    return name, phone
 
 def data_verification(command):
+    """Розбиваємо отриману стрічку на головні частини"""
+    
     if command in ('hello', 'show all', 'good bye', 'close', 'exit'):
         return commands_list[command.casefold()]()
     elif len(command.split()) < 2:
         return 'Not enough arguments.'
         #raise UnboundLocalError('Not enough arguments.')
     else:
-        command, name, phone = [data for data in (data_splitter(command))]
-    
+        command, accompanying_data = command.split(' ', maxsplit=1)
+        
         if command.casefold() not in commands_list:
             return 'Command is unrecognised. Please try again.'
             #raise KeyError('Command is unrecognised. Please try again.')
         else:
-            return commands_list[command.casefold()](name, phone)
+            return commands_list[command.casefold()](accompanying_data.casefold())
     
 
 def main():
@@ -93,7 +96,12 @@ def main():
     
     while True:
         command = input('Please enter your command: ')
-        print(data_verification(command))
+        execution = data_verification(command)
+        
+        if execution == 'Exit, bye!':
+            quit()
+        
+        print(execution)
 
 
 if __name__ == '__main__':
