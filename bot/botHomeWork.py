@@ -5,14 +5,15 @@ def input_error(func):
     
     def cheker(*args):
         try:
-            result = func(*args)
+            return func(*args)
         except KeyError:
-            print('Unidentified request')
+            return 'Unidentified request'
         except ValueError:
-            print('Unexpected incoming data.')
+            return 'Unexpected incoming data.'
         except IndexError:
-            print('Not found')
-        return result
+            return 'Not found'
+        except UnboundLocalError:
+            return 'Not enough input data.'
     
     return cheker
 
@@ -62,12 +63,12 @@ commands_list = {
     'exit' : exit_handler
 }
 
+@input_error
 def data_splitter(command):
-    try:
-        command, accompanying_data = command.split(' ', maxsplit=1)
-        name, phone = accompanying_data.split()
-    except ValueError:
-        print('Oops, you have, probably, forgot something. Please, try again.')
+    command, accompanying_data = command.split(' ', maxsplit=1)
+    name, phone = accompanying_data.split()
+    # except ValueError:
+    #     print('Oops, you have, probably, forgot something. Please, try again.')
             
     return command, name, phone
 
