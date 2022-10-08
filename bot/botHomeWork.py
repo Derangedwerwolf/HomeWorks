@@ -1,47 +1,49 @@
-PHONE_BOOK = {'Nothing' : 'is here', 'Igor': '067455857'}
+PHONE_BOOK = {}
 
 def input_error(func):
     """Перевіряємо на помилки"""
     
-    def cheker(indicator):
+    def cheker():
         try:
-            func()
+            result = func()
         except KeyError:
             print('Unidentified request')
         except ValueError:
             print('Unexpected incoming data.')
         except IndexError:
             print('Not found')
+        return result
     
     return cheker
 
 
 def hello_handler():
-    print('How can I help you')
+    return 'How can I help you'
 
 @input_error
-def add_contact(name, phone):
+def add_contact():
     """Заповнюємо записну книжку"""
     
     name, phone = input('Enter name and a phone: ').split()
     PHONE_BOOK[name.casefold()] = phone
-    print('New contact added')
+    return 'New contact added'
 
 @input_error
-def change_contact(name, phone):
+def change_contact():
     """Змінюємо контактні данні"""
     
     name, phone = [name_in_book for name_in_book in input("Enter name and a new phone: ").split()]
     PHONE_BOOK[name.casefold()] = phone
+    return 'Contact changed'
     
 @input_error
-def show_name(name):
+def show_name():
     name = input('Enter name: ')
-    print(PHONE_BOOK[name.casefold()])
+    return PHONE_BOOK[name.casefold()]
 
 
 def show_all():
-    print(PHONE_BOOK)
+    return PHONE_BOOK
     
 
 def exit_handler():
@@ -70,7 +72,7 @@ def main():
             print('Command is unrecognised. Please try again.')
             continue
         else:
-            commands_list[command.casefold()]()
+            print(commands_list[command.casefold()]())
 
 
 if __name__ == '__main__':
