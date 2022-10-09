@@ -69,10 +69,7 @@ commands_list = {
 @input_error
 def data_splitter(data):
     name, phone = data.split()
-<<<<<<< Updated upstream
-=======
         
->>>>>>> Stashed changes
     return name, phone
 
 @input_error
