@@ -68,9 +68,7 @@ commands_list = {
 
 @input_error
 def data_splitter(data):
-    
     name, phone = data.split()
-            
     return name, phone
 
 def data_verification(command):
