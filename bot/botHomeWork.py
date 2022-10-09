@@ -69,8 +69,13 @@ commands_list = {
 @input_error
 def data_splitter(data):
     name, phone = data.split()
+<<<<<<< Updated upstream
+=======
+        
+>>>>>>> Stashed changes
     return name, phone
 
+@input_error
 def data_verification(command):
     """
     Розбиваємо отриману стрічку на головні частини.
@@ -82,15 +87,15 @@ def data_verification(command):
         return commands_list[command.casefold()]()
     elif len(command.split()) < 2:
         return 'Not enough arguments.'
-        #raise UnboundLocalError('Not enough arguments.')
     else:
         command, accompanying_data = command.split(' ', maxsplit=1)
+        return commands_list[command.casefold()](accompanying_data.casefold())
         
-        if command.casefold() not in commands_list:
-            return 'Command is unrecognised. Please try again.'
-            #raise KeyError('Command is unrecognised. Please try again.')
-        else:
-            return commands_list[command.casefold()](accompanying_data.casefold())
+        # if command.casefold() not in commands_list:
+        #     return 'Command is unrecognised. Please try again.'
+        #     #raise KeyError('Command is unrecognised. Please try again.')
+        # else:
+        #     return commands_list[command.casefold()](accompanying_data.casefold())
     
 
 def main():
