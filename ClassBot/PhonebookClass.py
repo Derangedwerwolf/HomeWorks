@@ -45,6 +45,7 @@ def change_contact(data):
 
 @input_error
 def add_new_phone(data):
+    """Додаємо телефонний номер до вже створенного контакту"""
     name, phone = data_splitter(data)
     record_add_phone = users_book.data[name]
     record_add_phone.add(phone)
@@ -52,6 +53,7 @@ def add_new_phone(data):
 
 @input_error
 def delete_func(data):
+    """Видаляємо контак із записної книжки із телефоном(нами)"""
     name, phone = data_splitter(data)
     record_delete = users_book.data[name]
 
