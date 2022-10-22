@@ -55,7 +55,6 @@ def delete_func(data):
 
     if record_delete.remove(phone) is True:
         return f'Contact name: {name} phone: {phone}, has been deleted.'
-
     else:
         return 'The phone number not exist'
     
