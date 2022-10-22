@@ -8,15 +8,18 @@ class AddressBook(UserDict):
         self.data[record.name.value] = record
 
 class Record:
-    def __init__(self, name):
+    def __init__(self, name, phone=None):
         self.name = Name(name)
         self.phones = []
+        
+        if phone:
+            self.add(phone)
     
     def add(self, phone):
         self.phones.append(Phone(phone))
     
     def remove(self, phone):
-        self.phones.remove(Phone(phone))
+        self.phones.remove(phone)
     
     def change(self, old_phone, new_phone):
         self.remove(Phone(old_phone))
@@ -27,7 +30,7 @@ class Record:
 
 
 class Field:
-    def __init__(self, value=None):
+    def __init__(self, value):
         self.value = value
 
 class Name(Field):

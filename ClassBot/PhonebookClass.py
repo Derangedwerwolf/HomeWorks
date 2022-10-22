@@ -29,8 +29,8 @@ def hello_handler():
 def add_contact(data):
     """Заповнюємо записну книжку"""
     name, phone = data_splitter(data)
-    new_record = Record(name)
-    new_record.add(phone)
+    new_record = Record(name, phone)
+    # new_record.add(phone)
     
     users_book.add_record(new_record)
     return 'New contact added'
@@ -39,7 +39,6 @@ def add_contact(data):
 def change_contact(data):
     """Змінюємо контактні данні"""
     name, phone = data_splitter(data)
-    
     users_book.data[name.casefold()] = phone
     return 'Contact changed'
 
