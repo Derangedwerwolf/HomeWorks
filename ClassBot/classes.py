@@ -6,8 +6,6 @@ class AddressBook(UserDict):
     
     def add_record(self, record:object):
         self.data[record.name.value] = record
-        #print('New contact added.')
-
 
 class Record:
     def __init__(self, name):
