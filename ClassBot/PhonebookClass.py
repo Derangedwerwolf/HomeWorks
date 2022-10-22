@@ -16,8 +16,7 @@ def input_error(func):
             return 'Not found'
         except UnboundLocalError:
             return 'Not enough input data.'
-        except AttributeError: 
-            return "'NoneType' object has no attribute 'isnumeric'"
+
     
     return cheker
 
@@ -30,7 +29,6 @@ def add_contact(data):
     """Заповнюємо записну книжку"""
     name, phone = data_splitter(data)
     new_record = Record(name, phone)
-    # new_record.add(phone)
     
     users_book.add_record(new_record)
     return 'New contact added'
@@ -38,17 +36,16 @@ def add_contact(data):
 @input_error
 def change_contact(data):
     """Змінюємо контактні данні"""
-    name, phone = data_splitter(data)
-    old_phone = users_book.data[name.casefold()]
-    users_book.data[name.casefold()].change(old_phone, phone)
+    name, *phone = data_splitter(data)
+    users_book.data[name.casefold()].change(*phone)
     return 'Contact changed'
 
 @input_error
 def add_new_phone(data):
     """Додаємо телефонний номер до вже створенного контакту"""
     name, phone = data_splitter(data)
-    record_add_phone = users_book.data[name]
-    record_add_phone.add(phone)
+    #record_add_phone = users_book.data[name]
+    users_book.data[name].add_phone(phone)
     return f'A new phone: {phone}, has been added to contact name: {name}.'
 
 @input_error
@@ -91,7 +88,7 @@ COMMANDS_LIST = {
 @input_error
 def data_splitter(data):
     name, *phone = data.split() if len(data.split()) > 1 else [data, None]
-    return name, phone
+    return name, *phone
 
 @input_error
 def data_verification(command):

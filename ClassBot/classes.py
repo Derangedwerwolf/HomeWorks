@@ -20,8 +20,7 @@ class Record:
     
     def remove_phone(self, phone):
         for class_phone in self.phones:
-            if class_phone == phone:
-                print("DONE")
+            if class_phone.value == phone:
                 self.phones.remove(class_phone)
         
     
