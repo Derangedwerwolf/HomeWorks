@@ -19,11 +19,13 @@ class Record:
         self.phones.append(Phone(phone))
     
     def remove(self, phone):
-        self.phones.remove(phone)
+        for class_phone in self.phones:
+            if class_phone.value == phone:
+                self.phones.remove(class_phone)
     
     def change(self, old_phone, new_phone):
-        self.remove(Phone(old_phone))
-        self.add(Phone(new_phone))
+        self.remove(old_phone)
+        self.add(new_phone))
         
     def __repr__(self):
         return ' , '.join(repr(phone) for phone in self.phones)
