@@ -5,13 +5,6 @@ class AddressBook(UserDict):
         return self.data[name]
     
     def add_record(self, record:object):
-        # name = Name(input('enter name: '))
-        # phone = Phone(input('enter phone: '))
-        #record = Record()
-        
-        # if phone.value:
-        #     record.add(phone)
-        
         self.data[record.name.value] = record
         #print('New contact added.')
 
