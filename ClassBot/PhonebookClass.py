@@ -39,7 +39,8 @@ def add_contact(data):
 def change_contact(data):
     """Змінюємо контактні данні"""
     name, phone = data_splitter(data)
-    users_book.data[name.casefold()] = phone
+    old_phone = users_book.data[name.casefold()]
+    users_book.data[name.casefold()].change(old_phone, phone)
     return 'Contact changed'
 
 @input_error
@@ -89,7 +90,7 @@ COMMANDS_LIST = {
 
 @input_error
 def data_splitter(data):
-    name, phone = data.split() if len(data.split()) > 1 else [data, None]
+    name, *phone = data.split() if len(data.split()) > 1 else [data, None]
     return name, phone
 
 @input_error
