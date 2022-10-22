@@ -17,7 +17,6 @@ def input_error(func):
         except UnboundLocalError:
             return 'Not enough input data.'
 
-    
     return cheker
 
 
