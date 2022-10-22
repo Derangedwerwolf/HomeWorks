@@ -89,9 +89,6 @@ COMMANDS_LIST = {
 @input_error
 def data_splitter(data):
     name, phone = data.split() if len(data.split()) > 1 else [data.split(), None]
-    
-    if not phone.isnumeric() and phone != None:
-        raise TypeError
     return name, phone
 
 @input_error
