@@ -28,7 +28,6 @@ def main(users):
                 temporal_date = person_from_users['birthday']
                 temporal_date = datetime(year=current_day.year, month=temporal_date.month, day=temporal_date.day).date()
 
-                
                 BIRTHDAY_LIST.weekdays[calendar.day_name[temporal_date.weekday()]].append(person_from_users['name'])
 
     for step, name in BIRTHDAY_LIST.weekdays.items():

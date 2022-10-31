@@ -43,5 +43,5 @@ class Name(Field):
 
 class Phone(Field):
     def __repr__(self):
-        return f"{self.value}"
+        return f"{''.join(self.value)}"
     pass
