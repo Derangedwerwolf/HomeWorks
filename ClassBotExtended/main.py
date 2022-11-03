@@ -5,7 +5,7 @@ import executionBot
 def main():
     """Запускаємо бота"""
     print('Welcome to the adress book')
-    get_help()
+    executionBot.get_help()
     
     while True:
         command = input('Please enter your command: ')
