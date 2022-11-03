@@ -1,14 +1,29 @@
 from collections import UserDict
 from datetime import date
+import pickle
+import os
 
 class AddressBook(UserDict):
     N = 0
     cur = 0
-    all_values = []
+    #all_values = []
 
     def __init__(self):
         super().__init__()
         self.book = []
+        
+    @property
+    def save_data(self):
+        with open('adress_book.bin', 'wb') as file_in:
+            pickle.dump(self.data, file_in)
+    
+    @property
+    def unpack_data(self):
+        if os.path.exists('adress_book.bin'):
+            with open('adress_book.bin', 'rb') as file_out:
+                self.data = pickle.load(file_out)
+        else:
+            self.data = {}
     
     def find_contact(self, name):
         return self.data[name]
@@ -30,9 +45,66 @@ class AddressBook(UserDict):
         else:
             raise StopIteration
 
+
+class Field:
+    def __init__(self, value):
+        self._value = None
+        self.value = value
     
+    @property
+    def value(self):
+        return self._value
+    
+
+class Name(Field):
+    def __repr__(self):
+        return f"{self._value}"
+    
+    @Field.value.setter
+    def value(self, value):
+        #print('Good')
+        self._value = value
+
+
+class Phone(Field):
+    def __repr__(self):
+        return f"{''.join(self.value)}"
+    
+    @Field.value.setter
+    def value(self, value):
+        #Field.__value = value
+        
+        if value[0].isnumeric():
+            #print('Good2')
+            if not value.startswith('+38'):
+                value = '+38' + value
+            if len(value) != 13:
+                pass
+                #raise ValueError
+            self._value = value
+        else:
+            print('OOPS')
+            raise ValueError
+
+
+class Birthday(Field):
+    @Field.value.setter
+    def value(self, value):
+        if value:
+            day, month, year = value.split('.')
+            users_birthday = date(day=int(day), month=int(month), year=int(year))
+            
+            if users_birthday > date.today():
+                raise ValueError(f' {users_birthday} Invalid birtday data')
+            else:
+                self._value = users_birthday
+            
+    def __repr__(self):
+        return f"{self._value.strftime('%A %d %B %Y')}"
+    
+
 class Record:
-    def __init__(self, name, phone=None, birthday=None):
+    def __init__(self, name:Name, phone:Phone=None, birthday:Birthday=None):
         self.name = Name(name)
         self.phones = []
         self.birthday = birthday
@@ -71,52 +143,3 @@ class Record:
         return (' , '.join(repr(phone) for phone in self.phones) + ' : ' + repr(self.birthday) )
 
 
-class Field:
-    def __init__(self, value):
-        self._value = None
-        self.value = value
-    
-    @property
-    def value(self):
-        return self._value
-    
-
-class Name(Field):
-    def __repr__(self):
-        return f"{self._value}"
-    
-    @Field.value.setter
-    def value(self, value):
-        print('Good')
-        self._value = value
-
-class Phone(Field):
-    def __repr__(self):
-        return f"{''.join(self.value)}"
-    
-    @Field.value.setter
-    def value(self, value):
-        #Field.__value = value
-        
-        if value[0].isnumeric():
-            if not value.startswith('+38'):
-                value = '+38' + value
-            if len(value) != 13:
-                pass
-                #raise ValueError
-            self._value = value
-        else:
-            print('OOPS')
-            raise ValueError
-
-class Birthday(Field):
-    @Field.value.setter
-    def value(self, value):
-        if value:
-            print('YES')
-            day, month, year = value.split('.')
-            self._value = date(day=int(day), month=int(month), year=int(year))
-            
-    def __repr__(self):
-        return f"{self._value.strftime('%A %d %B %Y')}"
-    

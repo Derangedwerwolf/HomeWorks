@@ -2,6 +2,21 @@ from classes import Record
 import globalVariable
 
 
+instructions = """
+Greeting message: "helo"
+Add a new contact: "add"/ contact's name / contacts phone
+Change phone for existing contact: "change" / contact's name / new contacts phone
+Add new phone for existing contact: "add_phone" / contact's name
+Delete the phone for the contact: "delete" / contact's name
+Show the contact's phone number: "phone" / contact's name
+Add a birthday for a contact: "add_birthday" / contact's name / birthday date (DD.MM.YY)
+View all contacts : "show all"
+View set number from address book : "desplay" / number of elements
+Search by match : "search" / search data
+
+Show this text again : "help"
+"""
+
 def input_error(func):
     """Перевіряємо на помилки"""
     
@@ -24,6 +39,9 @@ def input_error(func):
 
 def hello_handler():
     return 'How can I help you'
+
+def get_help():
+    return instructions
 
 @input_error
 def add_contact(data):
@@ -61,14 +79,29 @@ def delete_func(data):
         return 'The phone number not exist'
     
 @input_error
-def show_name(name):
+def show_phone(name):
     if name.strip() not in globalVariable.users_book:
         return 'This contact does not exist.'
     return globalVariable.users_book.data[name.casefold()]
 
 @input_error
+def show_name(phone):
+    if phone.strip() not in globalVariable.users_book.values():
+        return 'This phone does not exist.'
+    return globalVariable.users_book.data[phone.casefold()]
+
+@input_error
 def show_all():
     return globalVariable.users_book
+
+@input_error
+def search(data):
+    for users in globalVariable.users_book.values():
+        for elem in users.phones.value:
+            if data in elem:
+                return users
+        if data in users.name.value:
+            return users
 
 @input_error
 def add_birthday(data):
@@ -89,20 +122,33 @@ def display(count):
     for _ in range(count):
         print(next(globalVariable.users_book))
 
+def save_data():
+    globalVariable.users_book.save_data
+    return "File successfully saved to 'adress_book.bin'"
+
+def unpack_data():
+    globalVariable.users_book.unpack_data
+    return "Data unloaded"
+
 def exit_handler():
     return 'Exit, bye!'
 
 COMMANDS_LIST = {
     'hello' : hello_handler,
+    'help' : get_help,
     'add' : add_contact,
     'add_phone': add_new_phone,
     'delete': delete_func,
     'change' : change_contact,
-    'show' : show_name,
+    'show_phone' : show_phone,
+    'show_name' : show_name,
     'display' : display,
     'show all' : show_all,
+    'search': search,
     'add_birthday' : add_birthday,
     'days_to_birthday' : days_to_birthday,
+    'save_file' : save_data,
+    'load_file' : unpack_data,
     'good bye' : exit_handler,
     'close' : exit_handler,
     'exit' : exit_handler
@@ -127,8 +173,12 @@ def data_verification(command):
         command, count = command.split(' ', maxsplit=1)
         return COMMANDS_LIST[command.casefold()](count())
     else:
-        command, accompanying_data = command.split(' ', maxsplit=1)
+        if len(command.split()) < 2:
+            command = command
+            print(command)
+            return COMMANDS_LIST[command.casefold()]()
+        else:
+            command, accompanying_data = command.split(' ', maxsplit=1)
         print(command)
         return COMMANDS_LIST[command.casefold()](accompanying_data.casefold())
 
-#import main
