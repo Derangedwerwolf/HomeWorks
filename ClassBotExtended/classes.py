@@ -12,12 +12,10 @@ class AddressBook(UserDict):
         super().__init__()
         self.book = []
         
-    @property
     def save_data(self):
         with open('adress_book.bin', 'wb') as file_in:
             pickle.dump(self.data, file_in)
     
-    @property
     def unpack_data(self):
         if os.path.exists('adress_book.bin'):
             with open('adress_book.bin', 'rb') as file_out:
@@ -104,7 +102,7 @@ class Birthday(Field):
     
 
 class Record:
-    def __init__(self, name:Name, phone:Phone=None, birthday:Birthday=None):
+    def __init__(self, name: 'Name', phone: 'Phone' = None, birthday: 'Birthday' = None):
         self.name = Name(name)
         self.phones = []
         self.birthday = birthday
