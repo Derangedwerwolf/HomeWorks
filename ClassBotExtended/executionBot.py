@@ -121,6 +121,27 @@ def display(count):
 
     for _ in range(count):
         print(next(globalVariable.users_book))
+        
+@input_error
+def add_email(data):
+    """Додаємо електронну адресу"""
+    name, email = data.split()
+    globalVariable.users_book.data[name.casefold()].add_email(email)
+    return f'A new email: {email}, has been added to contact name: {name}.'
+
+@input_error
+def change_email(data):
+    """Змінюємо електронну адресу"""
+    name, email = data.split()
+    globalVariable.users_book.data[name.casefold()].add_email(email)
+    return 'Email changed'
+
+@input_error
+def delete_email(data):
+    """Видаляємо електронну адресу"""
+    name, email = data.split()
+    globalVariable.users_book.data[name.casefold()].delete_email(email)
+    return 'Email deleted'
 
 def save_data():
     globalVariable.users_book.save_data

@@ -2,6 +2,7 @@ from collections import UserDict
 from datetime import date
 import pickle
 import os
+import re
 
 class AddressBook(UserDict):
     N = 0
@@ -86,6 +87,9 @@ class Phone(Field):
 
 
 class Birthday(Field):
+    def __repr__(self):
+        return f"{self._value.strftime('%A %d %B %Y')}"
+    
     @Field.value.setter
     def value(self, value):
         if value:
@@ -97,15 +101,27 @@ class Birthday(Field):
             else:
                 self._value = users_birthday
             
-    def __repr__(self):
-        return f"{self._value.strftime('%A %d %B %Y')}"
+    
+class Email(Field):
+    def __repr__(self) -> str:
+        return f"{self._value}"
+    
+    
+    @Field.value.setter
+    def value(self, value):
+        if re.match(r"[a-zA-Z_+-]+\S{1,}\@[a-zA-Z_+-]+\.[a-zA-Z_+-]{2,}", value).group():
+            self._value = value
+        else:
+            raise ValueError(f' {value} Invalid e-mail')
+        
     
 
 class Record:
-    def __init__(self, name: 'Name', phone: 'Phone' = None, birthday: 'Birthday' = None):
+    def __init__(self, name: 'Name', phone: 'Phone' = None, birthday: 'Birthday' = None, email: 'Email' = None):
         self.name = Name(name)
         self.phones = []
         self.birthday = birthday
+        self.email = email
         
         if phone:
             self.add_phone(phone)
@@ -135,9 +151,15 @@ class Record:
         else:
             self.delta_days = date(
                 day=int(self.birthday.value.day), month=int(self.birthday.value.month), year=int(self.cur_date.year)+1)
-            return (self.delta_days - self.cur_date).days        
+            return (self.delta_days - self.cur_date).days
+        
+    def add_email(self, data):
+        self.email = Email(data)
+        
+    def delete_email(self, data):
+        self.email = ""
     
     def __repr__(self):
-        return (' , '.join(repr(phone) for phone in self.phones) + ' : ' + repr(self.birthday) )
+        return (' , '.join(repr(phone) for phone in self.phones) + ' : ' + repr(self.birthday) + ' : ' + repr(self.email) )
 
 
