@@ -61,7 +61,6 @@ class Name(Field):
     
     @Field.value.setter
     def value(self, value):
-        #print('Good')
         self._value = value
 
 
@@ -74,12 +73,10 @@ class Phone(Field):
         #Field.__value = value
         
         if value[0].isnumeric():
-            #print('Good2')
             if not value.startswith('+38'):
                 value = '+38' + value
             if len(value) != 13:
                 pass
-                #raise ValueError
             self._value = value
         else:
             print('OOPS')
@@ -114,7 +111,16 @@ class Email(Field):
         else:
             raise ValueError(f' {value} Invalid e-mail')
         
-    
+class Note(Field):
+    pass
+    # def __init__(self, value):
+    #     super().__init__()
+
+class Address(Field):
+    pass
+    # def __init__(self, value):
+    #     super().__init__()
+        
 
 class Record:
     def __init__(self, name: 'Name', phone: 'Phone' = None, birthday: 'Birthday' = None, email: 'Email' = None):
@@ -122,6 +128,7 @@ class Record:
         self.phones = []
         self.birthday = birthday
         self.email = email
+        self.adress = 
         
         if phone:
             self.add_phone(phone)
@@ -156,7 +163,7 @@ class Record:
     def add_email(self, data):
         self.email = Email(data)
         
-    def delete_email(self, data):
+    def delete_email(self):
         self.email = ""
     
     def __repr__(self):
