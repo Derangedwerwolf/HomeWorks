@@ -66,7 +66,7 @@ class Name(Field):
 
 class Phone(Field):
     def __repr__(self):
-        return f"{''.join(self.value)}"
+        return f"{''.join(self._value)}"
     
     @Field.value.setter
     def value(self, value):
@@ -102,15 +102,15 @@ class Birthday(Field):
 class Email(Field):
     def __repr__(self) -> str:
         return f"{self._value}"
-    
-    
+
     @Field.value.setter
     def value(self, value):
         if re.match(r"[a-zA-Z_+-]+\S{1,}\@[a-zA-Z_+-]+\.[a-zA-Z_+-]{2,}", value).group():
             self._value = value
         else:
             raise ValueError(f' {value} Invalid e-mail')
-        
+
+
 class Note(Field):
     pass
     # def __init__(self, value):
@@ -123,12 +123,14 @@ class Address(Field):
         
 
 class Record:
-    def __init__(self, name: 'Name', phone: 'Phone' = None, birthday: 'Birthday' = None, email: 'Email' = None):
+    def __init__(self, name: 'Name', phone: 'Phone' = None, birthday: 'Birthday' = None, note: 'Note' = None , email: 'Email' = None, address: 'Address' = None, ):
         self.name = Name(name)
         self.phones = []
         self.birthday = birthday
+        self.note = note
         self.email = email
-        self.adress = 
+        self.address = address
+        self.tag = {}
         
         if phone:
             self.add_phone(phone)
