@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from collections import UserDict
 from datetime import date
 import pickle
@@ -45,10 +46,10 @@ class AddressBook(UserDict):
             raise StopIteration
 
 
-class Field:
-    def __init__(self, value):
-        self._value = None
-        self.value = value
+class Field(ABC):
+    def __init__(self, value=None):
+        self._value = value
+        #self.value = value
     
     @property
     def value(self):
@@ -123,7 +124,7 @@ class Address(Field):
         
 
 class Record:
-    def __init__(self, name: 'Name', phone: 'Phone' = None, birthday: 'Birthday' = None, note: 'Note' = None , email: 'Email' = None, address: 'Address' = None, ):
+    def __init__(self, name: 'Name', phone: 'Phone' = None, birthday: 'Birthday' = 'birthday', note: 'Note' = 'empty note' , email: 'Email' = 'no email', address: 'Address' = 'no address', ):
         self.name = Name(name)
         self.phones = []
         self.birthday = birthday
@@ -162,13 +163,26 @@ class Record:
                 day=int(self.birthday.value.day), month=int(self.birthday.value.month), year=int(self.cur_date.year)+1)
             return (self.delta_days - self.cur_date).days
         
+    def add_note(self, note):
+        self.note =Note(note)
+        
+    def add_tag(self, tag):
+        self.tag["tag"] = tag
+        self.tag["note"] = self.note
+    
+    def add_address(self, address):
+        self.address = Address(address)
+        
+    def delete_address(self):
+        self.address = "no address"
+        
     def add_email(self, data):
         self.email = Email(data)
         
     def delete_email(self):
-        self.email = ""
+        self.email = "no email"
     
     def __repr__(self):
-        return (' , '.join(repr(phone) for phone in self.phones) + ' : ' + repr(self.birthday) + ' : ' + repr(self.email) )
+        return (' , '.join(repr(phone) for phone in self.phones) + ' : ' + repr(self.birthday) + ' : ' + repr(self.email) + ' : ' + repr(self.address) )
 
 
