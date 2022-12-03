@@ -162,7 +162,7 @@ class Record:
             self.delta_days = date(
                 day=int(self.birthday.value.day), month=int(self.birthday.value.month), year=int(self.cur_date.year)+1)
             return (self.delta_days - self.cur_date).days
-        
+  
     def add_note(self, note):
         self.note =Note(note)
         
@@ -175,7 +175,7 @@ class Record:
         
     def delete_address(self):
         self.address = "no address"
-        
+
     def add_email(self, data):
         self.email = Email(data)
         
@@ -184,5 +184,6 @@ class Record:
     
     def __repr__(self):
         return (' , '.join(repr(phone) for phone in self.phones) + ' : ' + repr(self.birthday) + ' : ' + repr(self.email) + ' : ' + repr(self.address) )
+
 
 
