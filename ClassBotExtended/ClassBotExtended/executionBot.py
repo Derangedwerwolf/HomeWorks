@@ -8,7 +8,8 @@ Add a new contact: "add"/ contact's name / contacts phone
 Change phone for existing contact: "change" / contact's name / new contacts phone
 Add new phone for existing contact: "add_phone" / contact's name
 Delete the phone for the contact: "delete" / contact's name
-Show the contact's phone number: "phone" / contact's name
+
+Show the contact's phone number: "show_phone" / contact's name
 Add a birthday for a contact: "add_birthday" / contact's name / birthday date (DD.MM.YY)
 View all contacts : "show all"
 View set number from address book : "desplay" / number of elements
@@ -80,7 +81,7 @@ def delete_func(data):
     
 @input_error
 def show_phone(name):
-    if name.strip() not in globalVariable.users_book:
+    if name.strip().casefold() not in globalVariable.users_book:
         return 'This contact does not exist.'
     return globalVariable.users_book.data[name.casefold()]
 
