@@ -6,8 +6,8 @@ instructions = """
 Greeting message: "helo"
 Add a new contact: "add"/ contact's name / contacts phone
 Change phone for existing contact: "change" / contact's name / new contacts phone
-Add new phone for existing contact: "add_phone" / contact's name
-Delete the phone for the contact: "delete" / contact's name
+Add new phone for existing contact: "add_phone" / contact's name / extra phone number
+Delete the phone for the contact: "delete" / contact's name 
 
 Show the contact's phone number: "show_phone" / contact's name
 Add a birthday for a contact: "add_birthday" / contact's name / birthday date (DD.MM.YY)

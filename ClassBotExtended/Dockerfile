@@ -6,8 +6,10 @@ LABEL author=Igor<V0.1>
 
 WORKDIR /extendedBot
 
-RUN apt-get update
+COPY ClassBotExtended/. ./
+
+#RUN apt-get update
 
 #WORKDIR $EXTENDED_BOT
 
-CMD ["echo", "Starting compilation of ExtendedBot..."]
+CMD ["python", "main.py"]
