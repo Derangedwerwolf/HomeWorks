@@ -58,7 +58,7 @@ def folder_sort(path_to_folder: Path, path_to_folder_origin: Path):
     for file in path_to_folder.iterdir():
         
         if file.is_dir():
-            innerThread = ThreadWithReturnValue(target=folder_sort, args=(file, path_to_folder_origin)б name='folderSorter')
+            innerThread = ThreadWithReturnValue(target=folder_sort, args=(file, path_to_folder_origin), name='folderSorter')
             innerThread.start()
             innerThread.join()
             
