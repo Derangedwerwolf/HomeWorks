@@ -46,7 +46,7 @@ def folder_sort(path_to_folder: Path, path_to_folder_origin: Path):
         if file.is_dir():
             innerThread = Thread(target=folder_sort, args=(file, path_to_folder_origin))
             innerThread.start()
-            innerthread.join()
+            innerThread.join()
             
             #folder_sort(file, path_to_folder_origin)
             
@@ -56,9 +56,9 @@ def folder_sort(path_to_folder: Path, path_to_folder_origin: Path):
         elif file.is_file():
             file_ext = (os.path.splitext(file))[-1].replace('.', '')
             
-            innerThread = Thread(target=search_list, args=(file_ext, path_to_folder_origin))
-            innerThread.start()
-            innerthread.join()
+            searchThread = Thread(target=search_list, args=(file_ext, path_to_folder_origin))
+            searchThread.start()
+            searchThread.join()
             
             if file_transfer_to:
                 file_new_holder = os.path.join(file_transfer_to, os.path.basename(file))
@@ -78,4 +78,4 @@ if __name__ == '__main__':
     
     mainThread = Thread(target=folder_sort, args=(path_to_folder, path_to_folder))
     mainThread.start()
-    mainthread.join()
+    mainThread.join()
