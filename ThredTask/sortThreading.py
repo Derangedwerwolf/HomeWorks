@@ -7,6 +7,20 @@ from threading import Thread
 import CONSTANTS
 
 
+class ThreadWithReturnValue(Thread):
+    def __init__(self, group=None, target=None, name=None, 
+                 args=(), kwargs={}, Verbose=None):
+        Thread.__init__(self, group, target, name, args, kwargs)
+        self._return=None
+        
+    def run(self):
+        if self._target is not None:
+            self._return = self._target(*self._args, **self._kwargs)
+            
+    def join(self, *args):
+        Thread.join(self)
+        return self._return
+
 def normalizer(file_handling_foo):
     
     def inner_search_list(*args, **kwargs):
@@ -44,7 +58,7 @@ def folder_sort(path_to_folder: Path, path_to_folder_origin: Path):
     for file in path_to_folder.iterdir():
         
         if file.is_dir():
-            innerThread = Thread(target=folder_sort, args=(file, path_to_folder_origin))
+            innerThread = ThreadWithReturnValue(target=folder_sort, args=(file, path_to_folder_origin)б name='folderSorter')
             innerThread.start()
             innerThread.join()
             
@@ -56,7 +70,7 @@ def folder_sort(path_to_folder: Path, path_to_folder_origin: Path):
         elif file.is_file():
             file_ext = (os.path.splitext(file))[-1].replace('.', '')
             
-            searchThread = Thread(target=search_list, args=(file_ext, path_to_folder_origin))
+            searchThread = ThreadWithReturnValue(target=search_list, args=(file_ext, path_to_folder_origin), name='fileTransferThread')
             file_transfer_to = searchThread.start()
             #searchThread.start()
             searchThread.join()
@@ -76,7 +90,4 @@ if __name__ == '__main__':
     if not (os.path.exists(path_to_folder) and Path(path_to_folder).is_dir()):
         exit()
     
-    
-    mainThread = Thread(target=folder_sort, args=(path_to_folder, path_to_folder))
-    mainThread.start()
-    mainThread.join()
+    folder_sort(path_to_folder, path_to_folder)
