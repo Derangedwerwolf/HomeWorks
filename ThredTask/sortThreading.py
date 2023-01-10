@@ -57,7 +57,8 @@ def folder_sort(path_to_folder: Path, path_to_folder_origin: Path):
             file_ext = (os.path.splitext(file))[-1].replace('.', '')
             
             searchThread = Thread(target=search_list, args=(file_ext, path_to_folder_origin))
-            searchThread.start()
+            file_transfer_to = searchThread.start()
+            #searchThread.start()
             searchThread.join()
             
             if file_transfer_to:
