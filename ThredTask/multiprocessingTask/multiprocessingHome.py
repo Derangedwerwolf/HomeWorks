@@ -33,7 +33,9 @@ if __name__ == '__main__':
     starttime = timeit.default_timer()
     
     with Pool(8) as pool:
-        pool.apply(factorize, (128, 255, 99999, 10651060))
+        pool.map(factorize, (128, 255, 99999, 10651060))
+        # Устаревшая форма передачи аргументов функции в разных процессах
+        № pool.apply(factorize, (128, 255, 99999, 10651060))
 
     logger.debug(f'Starting: {current_process().name}')    
         
