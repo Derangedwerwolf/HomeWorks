@@ -35,7 +35,7 @@ if __name__ == '__main__':
     with Pool(8) as pool:
         pool.map(factorize, (128, 255, 99999, 10651060))
         # Устаревшая форма передачи аргументов функции в разных процессах
-        № pool.apply(factorize, (128, 255, 99999, 10651060))
+        # pool.apply(factorize, (128, 255, 99999, 10651060))
 
     logger.debug(f'Starting: {current_process().name}')    
         
