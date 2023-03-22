@@ -1,6 +1,6 @@
 FROM python:3.11.1-slim-bullseye
 
-#ENV CLASSBOTEXTENDED \extendedBot
+ENV CLASSBOTEXTENDED \extendedBot
 
 LABEL author=Igor<V0.1>
 

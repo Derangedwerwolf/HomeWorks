@@ -24,7 +24,6 @@ class Server(BaseHTTPRequestHandler):
         self.send_response(302)
         self.send_header('Location', '/')
         self.end_headers()
-        #return
     
     
     def do_GET(self):
