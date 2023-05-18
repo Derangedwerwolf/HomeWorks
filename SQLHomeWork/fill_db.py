@@ -7,6 +7,7 @@ from random import randint
 def date_range(start: date, end: date) -> list:
     result = []
     current_date = start
+    
     while current_date <= end:
         if current_date.isoweekday() < 6:
             result.append(current_date)
