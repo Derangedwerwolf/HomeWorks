@@ -1,5 +1,5 @@
 import pika, sys, os
-from .contacts_model import Contact
+from ..contacts_model import Contact
 
 
 def main():

@@ -1,5 +1,5 @@
 import pika, sys, os
-from .contacts_model import Contact
+from ..contacts_model import Contact
 
 
 def main():
@@ -19,7 +19,7 @@ def main():
         if contact:
             
             # Perform email sending logic here
-            print(f"Sending email to contact - ID: {contact.id}, Full Name: {contact.full_name}, Email: {contact.email}")
+            print(f"Sending SMS to contact - ID: {contact.id}, Full Name: {contact.full_name}, Email: {contact.phone_number}")
 
             # Mark the contact as sent
             contact.is_sent = True
@@ -28,7 +28,7 @@ def main():
             print(f"Contact not found with ID: {contact_id}")
 
     # Set up message consumer
-    channel.basic_consume(queue='email_queue', on_message_callback=callback)
+    channel.basic_consume(queue='sms_queue', on_message_callback=callback)
 
     # Start consuming messages
     print('Waiting for messages. To exit, press CTRL+C')
