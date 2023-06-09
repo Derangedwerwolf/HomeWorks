@@ -25,7 +25,7 @@ for contact in Contact.objects:
             body=str(contact.id)
         )
 
-print(" [x] Sent contact IDs to the email_queue")
+print(f" [x] Sent contact IDs to the {contact.preferred_delivery_method}")
 
 # Close the RabbitMQ connection
 connection.close()
