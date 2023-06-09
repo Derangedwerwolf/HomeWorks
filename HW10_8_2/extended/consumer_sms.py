@@ -19,7 +19,7 @@ def main():
         if contact:
             
             # Perform email sending logic here
-            print(f"Sending SMS to contact - ID: {contact.id}, Full Name: {contact.full_name}, Email: {contact.phone_number}")
+            print(f"Sending SMS to contact - ID: {contact.id}, Full Name: {contact.full_name}, Phone: {contact.phone_number}")
 
             # Mark the contact as sent
             contact.is_sent = True
