@@ -8,7 +8,7 @@ def main():
     channel = connection.channel()
 
     # Create RabbitMQ queue
-    channel.queue_declare(queue='email_queue')
+    channel.queue_declare(queue='sms_queue')
 
     # Define callback function for message processing
     def callback(ch, method, properties, body):

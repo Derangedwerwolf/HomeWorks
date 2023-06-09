@@ -14,11 +14,13 @@ def generate_fake_contacts(num_contacts):
         full_name = fake.name()
         user_age = random.randint(16, 99)
         user_profession = fake.job()
+        phone_number = fake.phone_number()
         email = fake.email()
         contact = Contact(
             full_name=full_name,
             user_age=user_age,
             user_profession=user_profession,
+            phone_number = phone_number,
             email=email
         )
         contact.save()

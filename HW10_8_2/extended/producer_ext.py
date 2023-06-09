@@ -8,6 +8,7 @@ channel = connection.channel()
 
 # Create RabbitMQ queue
 channel.queue_declare(queue='email_queue')
+channel.queue_declare(queue='sms_queue')
 
 # Send contacts to the appropriate queues based on preferred delivery method
 for contact in Contact.objects:
