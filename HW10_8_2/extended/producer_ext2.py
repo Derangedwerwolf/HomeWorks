@@ -13,17 +13,15 @@ channel.queue_declare(queue='sms_queue')
 # Send contacts to the appropriate queues based on preferred delivery method
 for contact in Contact.objects:
     if contact.preferred_delivery_method == "SMS":
-        channel.basic_publish(
-            exchange='',
-            routing_key='sms_queue',
-            body=str(contact.id)
-        )
-    elif contact.preferred_delivery_method == "Email":
-        channel.basic_publish(
-            exchange='',
-            routing_key='email_queue',
-            body=str(contact.id)
-        )
+        routing_key = f'sms_queue.{contact.id}'
+    else:
+        routing_key = f'email_queue.{contact.id}'
+    
+    channel.basic_publish(
+        exchange='',
+        routing_key=routing_key,
+        body=str(contact.id)
+    )
 
     print(f" [x] Sent contact IDs to the {contact.preferred_delivery_method}")
 
