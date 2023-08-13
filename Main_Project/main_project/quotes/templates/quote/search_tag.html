@@ -1,0 +1,26 @@
+{% extends 'quote/base.html' %}
+
+{% block title %}My quotes!{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h2>Quotes filter by tag <b>{{tag}}</b></h2>
+    <ul class="quote-list">
+      {% for quote in quotes %}
+        <li class="quote-item">
+          <div class="quote-text">“{{ quote.quote }}”</div>
+          <div class="quote-author">by {{ quote.author }}</div>
+          <div class="quote-tags">
+            {% for tag in quote.tags.all %}
+              <span class="tag"><a href="tag/{{ tag.name }}">#{{ tag.name }}</a></href></span>
+            {% endfor %}
+          </div>
+        </li>
+      {% empty %}
+        <li>No quotes found.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
+
+<link rel="stylesheet" href="{% static 'quote/styles.css' %}">

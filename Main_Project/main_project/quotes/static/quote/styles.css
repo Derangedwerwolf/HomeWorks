@@ -1,0 +1,38 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .quote-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .quote-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .quote-text {
+    font-size: 20px;
+    font-style: italic;
+  }
+  
+  .quote-author {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .quote-tags {
+    margin-top: 10px;
+  }
+  
+  .tag {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 2px 5px;
+    background-color: #eee;
+    font-size: 12px;
+  }
