@@ -204,3 +204,24 @@ class TagView(View):
         return redirect(to='quote:index')
 
 
+@login_required
+def example_fill_db(request):
+    author, _ = Author.objects.get_or_create(
+        user=request.user,
+        fullname='fullname',
+        defaults={
+            'born_date': 'born_date',
+            'born_location': 'born_location',
+            'description': 'description',
+        }
+    )
+    tag, _ = Tag.objects.get_or_create(name='Test name')
+    quote, _ = Quote.objects.get_or_create(
+        user=request.user,
+        quote='lorem ipsum',
+        defaults={
+            'author': author
+        }
+    )
+    quote.tags.add(tag)
+    return redirect(to='quote:index')
