@@ -13,8 +13,8 @@ def create_contact(db: Session, contact: ContactCreate):
     try:
         logger.info(f"Creating a new contact in the database: {contact}")
         # contact_dict = contact.dict()  # Convert ContactCreate to a dictionary
-        # db_contact = Contact(**contact_dict)
-        db_contact = Contact(contact.model_dump())
+        db_contact = Contact(**contact.dict())
+        # db_contact = Contact(**contact.model_dump())
         db.add(db_contact)
         db.commit()
         db.refresh(db_contact)
@@ -44,7 +44,7 @@ def update_contact(db: Session, contact_id: int, contact_update: ContactUpdate):
             return db_contact
         return None
     except Exception as e:
-        logger.error("Error updating contact in the database: {e}")
+        logger.error(f"Error updating contact in the database: {e}")
         raise e
 
 

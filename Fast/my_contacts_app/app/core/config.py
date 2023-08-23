@@ -1,9 +1,11 @@
-from pydantic_settings import BaseSettings
 import os
-
+from pydantic_settings import BaseSettings
 from dotenv import load_dotenv
 
 load_dotenv()
+
+
+database_url = os.environ.get("SQLALCHEMY_DATABASE_URL")
 
 
 class Settings(BaseSettings):
@@ -14,10 +16,6 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ".env"
-
-        # Tells pydantic to load the environment variables from the .env file
-        # before validating the settings
-        load_dotenv = True
 
 
 settings = Settings()
