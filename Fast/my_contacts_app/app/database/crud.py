@@ -49,17 +49,27 @@ def update_contact(db: Session, contact_id: int, contact_update: ContactUpdate):
 
 
 def delete_contact(db: Session, contact_id: int):
-    try:
-        logger.info(f"Deleting contact from the database: {contact_id}")
-        db_contact = db.query(Contact).filter(Contact.id == contact_id).first()
-        if db_contact:
-            db.delete(db_contact)
-            db.commit()
-            return True
-        return False
-    except Exception as e:
-        logger.error(f"Error deleting contact from the database: {e}")
-        raise e
+    print("I am inside")
+    db_contact = db.query(Contact).filter(Contact.id == contact_id).first()
+    print(db_contact)
+    if db_contact:
+        db.delete(db_contact)
+        db.commit()
+        return True
+    return False
+
+    # try:
+    #     # logger.info(f"Deleting contact from the database: {contact_id}")
+    #     db_contact = db.query(Contact).filter(Contact.id == contact_id).first()
+    #     print(db_contact)
+    #     if db_contact:
+    #         db.delete(db_contact)
+    #         db.commit()
+    #         return True
+    #     return False
+    # except Exception as e:
+    #     logger.error(f"Error deleting contact from the database: {e}")
+    #     raise e
 
 
 def get_upcoming_birthdays(

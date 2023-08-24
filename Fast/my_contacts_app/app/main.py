@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from api.routers import contacts, upcoming_birthdays
 from core.config import settings
 
-
+print(settings.DEBUG)
 logging.basicConfig(level=logging.DEBUG if settings.DEBUG else logging.INFO)
 logger = logging.getLogger(__name__)
 

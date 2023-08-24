@@ -1,5 +1,5 @@
 import logging
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Path
 from sqlalchemy.orm import Session
 from typing import List
 
@@ -10,7 +10,7 @@ from database.crud import (
     get_contact,
     get_contacts,
     update_contact,
-    delete_contact,
+    delete_contact as delete,
 )
 
 
@@ -80,14 +80,14 @@ def update_contact_details(
 
 
 @router.delete("/{contact_id}/")
-def delete_contact(contact_id: int, db: Session = Depends(get_db)):
+def delete_contact(contact_id: int = Path(ge=1), db: Session = Depends(get_db)):
     contact = get_contact(db=db, contact_id=contact_id)
     if not contact:
         raise HTTPException(status_code=404, detail="Contact not found")
 
     try:
         logger.info(f"Deleting contact: {contact_id}")
-        if not delete_contact(db=db, contact_id=contact_id):
+        if not delete(db=db, contact_id=contact_id):
             logger.warning(f"Failed to delete contact: {contact_id}")
             raise HTTPException(status_code=500, detail="Failed to delete contact")
         return None  # Return None for a successful delete operation

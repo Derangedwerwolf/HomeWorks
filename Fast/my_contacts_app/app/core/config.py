@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-database_url = os.environ.get("SQLALCHEMY_DATABASE_URL")
+# database_url = os.environ.get("SQLALCHEMY_DATABASE_URL")
 
 
 class Settings(BaseSettings):
