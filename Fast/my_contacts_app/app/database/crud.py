@@ -13,8 +13,9 @@ def create_contact(db: Session, contact: ContactCreate):
     try:
         logger.info(f"Creating a new contact in the database: {contact}")
         # contact_dict = contact.dict()  # Convert ContactCreate to a dictionary
-        db_contact = Contact(**contact.dict())
-        # db_contact = Contact(**contact.model_dump())
+        # db_contact = Contact(**contact.dict())
+        db_contact = Contact(**contact.model_dump())
+        print(db_contact)
         db.add(db_contact)
         db.commit()
         db.refresh(db_contact)
