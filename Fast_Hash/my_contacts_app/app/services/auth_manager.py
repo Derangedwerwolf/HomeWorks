@@ -1,13 +1,13 @@
 from datetime import datetime, timedelta
-from app.database.db import get_db
+from database.db import get_db
 from sqlalchemy.orm import Session
 from typing import Optional
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
-from app.database.db import User
-from app.repository.repositories import UserRepository
+from database.models import User
+from repository.repositories import UserRepository
 
 
 class AuthManager:

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from ..database.models import User
-from api.schemas.contact import UserCreate
+from database.models import User
+from api.schemas.users import UserCreate
 
 
 class UserRepository:

@@ -1,10 +1,10 @@
-from app.repository.repositories import UserRepository
+from repository.repositories import UserRepository
 from fastapi import APIRouter, Depends, HTTPException, status, Form
 from sqlalchemy.orm import Session
-from app.database.db import get_db
-from app.database.models import User
-from app.services.auth_manager import auth_manager
-from app.api.schemas.users import UserModel, TokenModel, UserResponse
+from database.db import get_db
+from database.models import User
+from services.auth_manager import auth_manager
+from api.schemas.users import UserCreate, TokenModel, UserResponse
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -12,7 +12,7 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 @router.post(
     "/signup", response_model=UserResponse, status_code=status.HTTP_201_CREATED
 )
-def signup(user: UserModel, db: Session = Depends(get_db)):
+def signup(user: UserCreate, db: Session = Depends(get_db)):
     user_repository = UserRepository(db)
     exist_user = user_repository.get_user_by_email(user.email, db)
     if exist_user:

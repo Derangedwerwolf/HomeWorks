@@ -4,7 +4,8 @@ import logging
 from fastapi import FastAPI
 from api.routers import contacts, auth, upcoming_birthdays
 from core.config import settings
-from database.db import Base, engine
+from database.models import Base
+from database.db import engine
 
 print(settings.DEBUG)
 logging.basicConfig(level=logging.DEBUG if settings.DEBUG else logging.INFO)
@@ -31,4 +32,4 @@ if __name__ == "__main__":
 
     import uvicorn
 
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8080)

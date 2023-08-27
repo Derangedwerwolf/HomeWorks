@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, Path
 from sqlalchemy.orm import Session
 from typing import List
 
-from app.services.auth_manager import auth_manager
+from services.auth_manager import auth_manager
 from api.schemas.contact import ContactCreate, ContactResponse, ContactUpdate
 from database.models import User
 from database.db import get_db
