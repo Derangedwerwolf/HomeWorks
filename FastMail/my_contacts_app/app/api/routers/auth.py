@@ -4,10 +4,14 @@ from fastapi import (
     Depends,
     HTTPException,
     status,
-    Form,
     Security,
     BackgroundTasks,
     Request,
+)
+from fastapi.security import (
+    OAuth2PasswordRequestForm,
+    HTTPAuthorizationCredentials,
+    HTTPBearer,
 )
 from sqlalchemy.orm import Session
 from database.db import get_db
@@ -18,6 +22,7 @@ from api.schemas.users import UserCreate, TokenModel, UserResponse, RequestEmail
 
 
 router = APIRouter(prefix="/auth", tags=["auth"])
+security = HTTPBearer()
 
 
 @router.post(
@@ -42,20 +47,14 @@ def signup(
 
 
 @router.post("/login", response_model=TokenModel)
-def login(
-    username: str = Form(...), password: str = Form(...), db: Session = Depends(get_db)
-):
+def login(body: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     user_repository = UserRepository(db)
-    user = user_repository.get_user_by_email(username)
+    user = user_repository.get_user_by_email(body.username)
     if user is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid email"
         )
-    if not user.confirmed:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED, detail="Email not confirmed"
-        )
-    if not auth_manager.verify_password(password, user.password):
+    if not auth_manager.verify_password(body.password, user.password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid password"
         )
@@ -73,24 +72,28 @@ def login(
     }
 
 
-@router.post("/refresh-token/")
-def refresh_token(refresh_token: str, db: Session = Depends(get_db)):
-    user_id = auth_manager.verify_token(refresh_token)
-    user_repository = UserRepository(db)
-    user = user_repository.get_user_by_email(user_id)
-    if user is None:
+@router.get("/refresh_token", response_model=TokenModel)
+def refresh_token(
+    credentials: HTTPAuthorizationCredentials = Security(security),
+    db: Session = Depends(get_db),
+):
+    token = credentials.credentials
+    email = auth_manager.decode_refresh_token(token)
+    user = UserRepository.get_user_by_email(email, db)
+    if user.refresh_token != token:
+        UserRepository.update_token(user, None, db)
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found"
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid refresh token"
         )
 
-    access_token = auth_manager.create_access_token({"sub": user_id})
-    return {"access_token": access_token}
-
-
-# @router.get("/confirm-email/{email}")
-# def confirm_email(email: str, db: Session = Depends(get_db)):
-#     confirmed_email(email, db)
-#     return {"message": "Email confirmed successfully"}
+    access_token = auth_manager.create_access_token(data={"sub": email})
+    refresh_token = auth_manager.create_refresh_token(data={"sub": email})
+    UserRepository.update_token(user, refresh_token, db)
+    return {
+        "access_token": access_token,
+        "refresh_token": refresh_token,
+        "token_type": "bearer",
+    }
 
 
 @router.get("/confirmed_email/{token}")
