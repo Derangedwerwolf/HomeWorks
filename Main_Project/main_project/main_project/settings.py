@@ -28,14 +28,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = "django-insecure-@7=n2l&)-s-ur0-5s!=r4j!%pbeyjy-6oo7m%#jv4p4telqn7e"
 
-SECRET_KEY = env.str('SECRET_KEY')
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-DEBUG = env.bool('DEBUG')
+DEBUG = env.bool("DEBUG")
 
-ALLOWED_HOSTS = ['http://127.0.0.1:8000/', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ["http://127.0.0.1:8000/", "127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -47,9 +47,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'bootstrap4',
-    'users',
-    'quotes',
+    "bootstrap4",
+    "users",
+    "quotes",
 ]
 
 MIDDLEWARE = [
@@ -67,7 +67,10 @@ ROOT_URLCONF = "main_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates', 'errors')],
+        "DIRS": [
+            os.path.join(BASE_DIR, "templates"),
+            os.path.join(BASE_DIR, "templates", "errors"),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -88,7 +91,7 @@ WSGI_APPLICATION = "main_project.wsgi.application"
 
 """DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'igorS',
@@ -98,10 +101,8 @@ WSGI_APPLICATION = "main_project.wsgi.application"
 }
 """
 
-#ALT
-DATABASES = {
-    'default': env.db()
-}
+# ALT
+DATABASES = {"default": env.db()}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -138,12 +139,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = env.str('STATIC_ROOT', os.path.join(BASE_DIR, 'static'))
-MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_URL = '/media/'
-LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/login/'
+STATIC_ROOT = env.str("STATIC_ROOT", os.path.join(BASE_DIR, "static"))
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
+LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = "/login/"
 
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.meta.ua"
+EMAIL_PORT = 465
+EMAIL_STARTTLS = False
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = "example@meta.ua"
+EMAIL_HOST_PASSWORD = "secretPassword"
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
