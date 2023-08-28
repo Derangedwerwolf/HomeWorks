@@ -1,7 +1,7 @@
 # from database.crud import get_user_by_email
 from sqlalchemy.orm import Session
 from database.models import User
-from api.schemas.users import UserCreate, UserResponse, TokenModel
+from api.schemas.users import UserCreate, UserDb
 
 
 class UserRepository:
@@ -32,23 +32,15 @@ class UserRepository:
         self.db.commit()
         self.db.refresh(db_user)
 
-        # Create tokens for the user
-        from services.auth_manager import AuthManager
-
-        auth_manager = AuthManager()
-        access_token = auth_manager.create_access_token(
-            data={"sub": db_user.email},
-            expires_delta=auth_manager.ACCESS_TOKEN_EXPIRE_MINUTES,
-        )
-        refresh_token = auth_manager.create_refresh_token(
-            data={"sub": db_user.email},
-            expires_delta=auth_manager.ACCESS_TOKEN_EXPIRE_MINUTES,
+        # Construct a UserDb instance with the appropriate attributes
+        created_user = UserDb(
+            id=db_user.id,
+            username=user.username,
+            email=user.email,
+            avatar=None,  # Set the avatar if applicable
         )
 
-        return UserResponse(
-            user=db_user,
-            tokens=TokenModel(access_token=access_token, refresh_token=refresh_token),
-        )
+        return created_user
 
     # return db_user
 

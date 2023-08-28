@@ -55,6 +55,5 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
     confirmed = Column(Boolean, default=False)
-    access_token = Column(String)
     refresh_token = Column(String)
     contacts = relationship("Contact", backref="user")
