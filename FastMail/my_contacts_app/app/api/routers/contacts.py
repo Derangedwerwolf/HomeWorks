@@ -27,6 +27,20 @@ def create_new_contact(
     db: Session = Depends(get_db),
     current_user: User = Depends(auth_manager.get_current_user),
 ):
+    """
+    Create a new contact.
+
+    :param contact: Contact information.
+    :type contact: ContactCreate
+    :param db: Database session.
+    :type db: Session
+    :param current_user: Current user.
+    :type current_user: User
+    :return: Created contact.
+    :rtype: ContactResponse
+    :raises HTTPException: If an error occurs during contact creation.
+    """
+
     try:
         logger.info(f"Creating a new contact: {contact}")
         return create_contact(db=db, user_id=current_user.id, contact=contact)
@@ -42,6 +56,22 @@ def read_contacts(
     db: Session = Depends(get_db),
     current_user: User = Depends(auth_manager.get_current_user),
 ):
+    """
+    Retrieve a list of contacts with pagination.
+
+    :param skip: Number of contacts to skip.
+    :type skip: int
+    :param limit: Maximum number of contacts to retrieve.
+    :type limit: int
+    :param db: Database session.
+    :type db: Session
+    :param current_user: Current user.
+    :type current_user: User
+    :return: List of contacts.
+    :rtype: List[ContactResponse]
+    :raises HTTPException: If an error occurs during contact retrieval.
+    """
+
     try:
         logger.info(f"Retrieving contacts with pagination: {skip}, {limit}")
         return get_contacts(db=db, user_id=current_user.id, skip=skip, limit=limit)
@@ -56,6 +86,20 @@ def read_contact(
     db: Session = Depends(get_db),
     current_user: User = Depends(auth_manager.get_current_user),
 ):
+    """
+    Retrieve a contact by ID.
+
+    :param contact_id: ID of the contact to retrieve.
+    :type contact_id: int
+    :param db: Database session.
+    :type db: Session
+    :param current_user: Current user.
+    :type current_user: User
+    :return: Retrieved contact.
+    :rtype: ContactResponse
+    :raises HTTPException: If the contact is not found or an error occurs during retrieval.
+    """
+
     try:
         logger.info(f"Retrieving contact by ID: {contact_id}")
         contact = get_contact(db=db, user=current_user, contact_id=contact_id)
@@ -76,6 +120,22 @@ def update_contact_details(
     db: Session = Depends(get_db),
     current_user: User = Depends(auth_manager.get_current_user),
 ):
+    """
+    Update contact details by ID.
+
+    :param contact_id: ID of the contact to update.
+    :type contact_id: int
+    :param contact_update: Updated contact information.
+    :type contact_update: ContactUpdate
+    :param db: Database session.
+    :type db: Session
+    :param current_user: Current user.
+    :type current_user: User
+    :return: Updated contact.
+    :rtype: ContactResponse
+    :raises HTTPException: If the contact is not found or an error occurs during update.
+    """
+
     contact = get_contact(db=db, user=current_user, contact_id=contact_id)
 
     if not contact:
@@ -101,6 +161,20 @@ def delete_contact(
     db: Session = Depends(get_db),
     current_user: User = Depends(auth_manager.get_current_user),
 ):
+    """
+    Delete a contact by ID.
+
+    :param contact_id: ID of the contact to delete.
+    :type contact_id: int
+    :param db: Database session.
+    :type db: Session
+    :param current_user: Current user.
+    :type current_user: User
+    :return: None (for a successful delete operation).
+    :rtype: None
+    :raises HTTPException: If the contact is not found or an error occurs during deletion.
+    """
+
     contact = get_contact(db=db, user=current_user, contact_id=contact_id)
     if not contact:
         raise HTTPException(status_code=404, detail="Contact not found")

@@ -18,7 +18,7 @@ from database.db import get_db
 from database.models import User
 from services.auth_manager import auth_manager
 from services.email import send_email
-from api.schemas.users import UserCreate, TokenModel, UserResponse, RequestEmail
+from api.schemas.users import UserCreate, TokenModel, UserResponse, RequestEmail, UserDb
 
 
 router = APIRouter(prefix="/auth", tags=["auth"])
@@ -34,16 +34,33 @@ def signup(
     request: Request,
     db: Session = Depends(get_db),
 ):
+    print("Entering signup endpoint")
     user_repository = UserRepository(db)
     exist_user = user_repository.get_user_by_email(user.email)
     if exist_user:
+        print("User already exists:", exist_user.email)
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT, detail="Account already exists"
         )
+    print("User does not exist. Creating new user.")
     user.password = auth_manager.get_password_hash(user.password)
     new_user = user_repository.create_user(user)
-    background_tasks.add_task(send_email, new_user.email, request.base_url)
-    return {"user": new_user, "detail": "User successfully created"}
+    print("New user created:", new_user.email)
+    print("Email:", new_user.email)
+    print("Base URL:", request.base_url)
+    background_tasks.add_task(
+        send_email, new_user.email, username="Igor", host=request.base_url
+    )
+
+    user_response = UserResponse(
+        user=UserDb(
+            id=new_user.id, email=new_user.email, username=""
+        ),  # Include a placeholder value for username
+        tokens=TokenModel(access_token="", refresh_token="", token_type="bearer"),
+        detail="User successfully created",
+    )
+    print("Returning user response")
+    return user_response
 
 
 @router.post("/login", response_model=TokenModel)

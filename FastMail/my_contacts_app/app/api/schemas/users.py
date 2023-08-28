@@ -14,7 +14,7 @@ class UserCreate(UserBase):
 
 class UserDb(UserBase):
     id: int
-    created_at: datetime
+    # created_at: datetime
     avatar: Optional[str] = None
 
     class Config:

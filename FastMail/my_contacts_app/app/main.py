@@ -1,3 +1,18 @@
+"""
+REST API Main
+=================
+
+This script is the entry point for the My Contacts App. It sets up the FastAPI
+application, includes routers, and runs the UVicorn server.
+
+Usage:
+    Run this script to start the My Contacts App server.
+
+Configuration:
+    Make sure to configure settings in the 'core.config' module.
+
+"""
+
 import logging
 
 # from app.services.auth_manager import AuthManager

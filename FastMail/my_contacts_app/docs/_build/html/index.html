@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Welcome to REST API’s documentation! &#8212; REST API  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="_static/nature.css?v=601dbdee" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">REST API  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to REST API’s documentation!</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="welcome-to-rest-api-s-documentation">
+<h1>Welcome to REST API’s documentation!<a class="headerlink" href="#welcome-to-rest-api-s-documentation" title="Link to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="rest-api-main">
+<h1>REST API Main<a class="headerlink" href="#rest-api-main" title="Link to this heading">¶</a></h1>
+<section id="module-app.main">
+<span id="id1"></span><h2>REST API Main<a class="headerlink" href="#module-app.main" title="Link to this heading">¶</a></h2>
+<p>This script is the entry point for the My Contacts App. It sets up the FastAPI
+application, includes routers, and runs the UVicorn server.</p>
+<dl class="simple">
+<dt>Usage:</dt><dd><p>Run this script to start the My Contacts App server.</p>
+</dd>
+<dt>Configuration:</dt><dd><p>Make sure to configure settings in the ‘core.config’ module.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="rest-api-database-models">
+<h1>REST API database Models<a class="headerlink" href="#rest-api-database-models" title="Link to this heading">¶</a></h1>
+<dl class="py class" id="module-app.database.models">
+<dt class="sig sig-object py" id="app.database.models.Contact">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.database.models.</span></span><span class="sig-name descname"><span class="pre">Contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.database.models.Contact" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
+<p>Database model representing a contact.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>id (int): Contact’s unique identifier.
+first_name (str): First name of the contact.
+last_name (str): Last name of the contact.
+email (str): Email address of the contact.
+phone_number (str): Phone number of the contact.
+birthday (Date): Birthday of the contact.
+avatar (str): URL to the contact’s avatar image.
+additional_data (str): Additional data about the contact.
+user_id (int): ID of the associated user.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.Contact.additional_data">
+<span class="sig-name descname"><span class="pre">additional_data</span></span><a class="headerlink" href="#app.database.models.Contact.additional_data" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.Contact.avatar">
+<span class="sig-name descname"><span class="pre">avatar</span></span><a class="headerlink" href="#app.database.models.Contact.avatar" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.Contact.birthday">
+<span class="sig-name descname"><span class="pre">birthday</span></span><a class="headerlink" href="#app.database.models.Contact.birthday" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.Contact.email">
+<span class="sig-name descname"><span class="pre">email</span></span><a class="headerlink" href="#app.database.models.Contact.email" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.Contact.first_name">
+<span class="sig-name descname"><span class="pre">first_name</span></span><a class="headerlink" href="#app.database.models.Contact.first_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.Contact.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#app.database.models.Contact.id" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.Contact.last_name">
+<span class="sig-name descname"><span class="pre">last_name</span></span><a class="headerlink" href="#app.database.models.Contact.last_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.Contact.phone_number">
+<span class="sig-name descname"><span class="pre">phone_number</span></span><a class="headerlink" href="#app.database.models.Contact.phone_number" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.Contact.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#app.database.models.Contact.user_id" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.database.models.User">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.database.models.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.database.models.User" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
+<p>Database model representing a user.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>id (int): User’s unique identifier.
+email (str): Email address of the user.
+hashed_password (str): Hashed password of the user.
+confirmed (bool): Indicates if the user’s email is confirmed.
+refresh_token (str): Refresh token for the user’s authentication.
+contacts (relationship): Relationship to the user’s contacts.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.User.confirmed">
+<span class="sig-name descname"><span class="pre">confirmed</span></span><a class="headerlink" href="#app.database.models.User.confirmed" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.User.contacts">
+<span class="sig-name descname"><span class="pre">contacts</span></span><a class="headerlink" href="#app.database.models.User.contacts" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.User.email">
+<span class="sig-name descname"><span class="pre">email</span></span><a class="headerlink" href="#app.database.models.User.email" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.User.hashed_password">
+<span class="sig-name descname"><span class="pre">hashed_password</span></span><a class="headerlink" href="#app.database.models.User.hashed_password" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.User.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#app.database.models.User.id" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.database.models.User.refresh_token">
+<span class="sig-name descname"><span class="pre">refresh_token</span></span><a class="headerlink" href="#app.database.models.User.refresh_token" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="rest-api-repository-repositories">
+<h1>REST API repository Repositories<a class="headerlink" href="#rest-api-repository-repositories" title="Link to this heading">¶</a></h1>
+<dl class="py class" id="module-app.repository.repositories">
+<dt class="sig sig-object py" id="app.repository.repositories.UserRepository">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.repository.repositories.</span></span><span class="sig-name descname"><span class="pre">UserRepository</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.repository.repositories.UserRepository" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Repository class for managing user data.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.repository.repositories.UserRepository.confirmed_email">
+<span class="sig-name descname"><span class="pre">confirmed_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#app.repository.repositories.UserRepository.confirmed_email" title="Link to this definition">¶</a></dt>
+<dd><p>Mark a user’s email as confirmed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>email</strong> (<em>str</em>) – User’s email.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.repository.repositories.UserRepository.create_user">
+<span class="sig-name descname"><span class="pre">create_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UserCreate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.repository.repositories.UserRepository.create_user" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user</strong> (<em>UserCreate</em>) – User data.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Created user.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#app.database.models.User" title="app.database.models.User">User</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.repository.repositories.UserRepository.get_user_by_email">
+<span class="sig-name descname"><span class="pre">get_user_by_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.repository.repositories.UserRepository.get_user_by_email" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve a user by email.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>email</strong> (<em>str</em>) – User’s email.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>User with the given email.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#app.database.models.User" title="app.database.models.User">User</a> or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.repository.repositories.UserRepository.update_token">
+<span class="sig-name descname"><span class="pre">update_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#app.database.models.User" title="app.database.models.User"><span class="pre">User</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#app.repository.repositories.UserRepository.update_token" title="Link to this definition">¶</a></dt>
+<dd><p>Update a user’s refresh token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user</strong> (<a class="reference internal" href="#app.database.models.User" title="app.database.models.User"><em>User</em></a>) – User to update.</p></li>
+<li><p><strong>token</strong> (<em>str</em><em> or </em><em>None</em>) – Refresh token.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – Database session.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="rest-api-services-auth">
+<h1>REST API services Auth<a class="headerlink" href="#rest-api-services-auth" title="Link to this heading">¶</a></h1>
+<dl class="py class" id="module-app.services.auth_manager">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.services.auth_manager.</span></span><span class="sig-name descname"><span class="pre">AuthManager</span></span><a class="headerlink" href="#app.services.auth_manager.AuthManager" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Manages authentication-related operations.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>SECRET_KEY (str): Secret key for encoding and decoding JWT tokens.
+ALGORITHM (str): Algorithm used for encoding and decoding JWT tokens.
+ACCESS_TOKEN_EXPIRE_MINUTES (int): Expiration time for access tokens in minutes.
+oauth2_scheme (OAuth2PasswordBearer): OAuth2 password bearer scheme for token extraction.
+pwd_context (CryptContext): Password hashing context.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.ACCESS_TOKEN_EXPIRE_MINUTES">
+<span class="sig-name descname"><span class="pre">ACCESS_TOKEN_EXPIRE_MINUTES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">30</span></em><a class="headerlink" href="#app.services.auth_manager.AuthManager.ACCESS_TOKEN_EXPIRE_MINUTES" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.ALGORITHM">
+<span class="sig-name descname"><span class="pre">ALGORITHM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'HS256'</span></em><a class="headerlink" href="#app.services.auth_manager.AuthManager.ALGORITHM" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.SECRET_KEY">
+<span class="sig-name descname"><span class="pre">SECRET_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'your-secret-key'</span></em><a class="headerlink" href="#app.services.auth_manager.AuthManager.SECRET_KEY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.create_access_token">
+<span class="sig-name descname"><span class="pre">create_access_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expires_delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.auth_manager.AuthManager.create_access_token" title="Link to this definition">¶</a></dt>
+<dd><p>Create an access token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dict</em>) – Data to encode in the token.</p></li>
+<li><p><strong>expires_delta</strong> (<em>int</em>) – Expiration time for the token in minutes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Access token.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.create_email_token">
+<span class="sig-name descname"><span class="pre">create_email_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.auth_manager.AuthManager.create_email_token" title="Link to this definition">¶</a></dt>
+<dd><p>Create an email verification token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dict</em>) – Data to encode in the token.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Email verification token.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.create_refresh_token">
+<span class="sig-name descname"><span class="pre">create_refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expires_delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.auth_manager.AuthManager.create_refresh_token" title="Link to this definition">¶</a></dt>
+<dd><p>Create a refresh token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dict</em>) – Data to encode in the token.</p></li>
+<li><p><strong>expires_delta</strong> (<em>int</em>) – Expiration time for the token in days.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Refresh token.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.decode_refresh_token">
+<span class="sig-name descname"><span class="pre">decode_refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.auth_manager.AuthManager.decode_refresh_token" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.get_current_user">
+<span class="sig-name descname"><span class="pre">get_current_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(OAuth2PasswordBearer)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.auth_manager.AuthManager.get_current_user" title="Link to this definition">¶</a></dt>
+<dd><p>Get the current user based on the access token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token</strong> (<em>str</em>) – Access token.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – Database session.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Current user.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#app.database.models.User" title="app.database.models.User">User</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.get_email_from_token">
+<span class="sig-name descname"><span class="pre">get_email_from_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.auth_manager.AuthManager.get_email_from_token" title="Link to this definition">¶</a></dt>
+<dd><p>Get the email from an email verification token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>token</strong> (<em>str</em>) – Email verification token.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Email address.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the token is invalid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.get_password_hash">
+<span class="sig-name descname"><span class="pre">get_password_hash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.auth_manager.AuthManager.get_password_hash" title="Link to this definition">¶</a></dt>
+<dd><p>Generate a hashed password from a plain password.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>password</strong> (<em>str</em>) – Plain password.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Hashed password.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.oauth2_scheme">
+<span class="sig-name descname"><span class="pre">oauth2_scheme</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;fastapi.security.oauth2.OAuth2PasswordBearer</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#app.services.auth_manager.AuthManager.oauth2_scheme" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.pwd_context">
+<span class="sig-name descname"><span class="pre">pwd_context</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;CryptContext&gt;</span></em><a class="headerlink" href="#app.services.auth_manager.AuthManager.pwd_context" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.verify_password">
+<span class="sig-name descname"><span class="pre">verify_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plain_password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hashed_password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.auth_manager.AuthManager.verify_password" title="Link to this definition">¶</a></dt>
+<dd><p>Verify a plain password against a hashed password.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plain_password</strong> (<em>str</em>) – Plain password to verify.</p></li>
+<li><p><strong>hashed_password</strong> (<em>str</em>) – Hashed password to compare against.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the password is verified.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.services.auth_manager.AuthManager.verify_token">
+<span class="sig-name descname"><span class="pre">verify_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.auth_manager.AuthManager.verify_token" title="Link to this definition">¶</a></dt>
+<dd><p>Verify and decode a JWT token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>token</strong> (<em>str</em>) – JWT token to verify.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Decoded token payload.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the token is invalid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="rest-api-services-email">
+<h1>REST API services Email<a class="headerlink" href="#rest-api-services-email" title="Link to this heading">¶</a></h1>
+<dl class="py function" id="module-app.services.email">
+<dt class="sig sig-object py" id="app.services.email.send_email">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.services.email.</span></span><span class="sig-name descname"><span class="pre">send_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EmailStr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.email.send_email" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="rest-api-routes-auth">
+<h1>REST API routes Auth<a class="headerlink" href="#rest-api-routes-auth" title="Link to this heading">¶</a></h1>
+<dl class="py function" id="module-api.routers.auth">
+<dt class="sig sig-object py" id="api.routers.auth.confirmed_email">
+<span class="sig-prename descclassname"><span class="pre">api.routers.auth.</span></span><span class="sig-name descname"><span class="pre">confirmed_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.routers.auth.confirmed_email" title="Link to this definition">¶</a></dt>
+<dd><p>Confirm the user’s email using a confirmation token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token</strong> (<em>str</em>) – Email confirmation token.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – Database session.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Confirmation message.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If verification fails or an error occurs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.routers.auth.login">
+<span class="sig-prename descclassname"><span class="pre">api.routers.auth.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OAuth2PasswordRequestForm</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(OAuth2PasswordRequestForm)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.routers.auth.login" title="Link to this definition">¶</a></dt>
+<dd><p>Log in a user and issue an access token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>body</strong> (<em>OAuth2PasswordRequestForm</em>) – OAuth2 password request form containing username and password.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – Database session.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Token model containing access and refresh tokens.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>TokenModel</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the user is not found or the provided credentials are invalid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.routers.auth.refresh_token">
+<span class="sig-prename descclassname"><span class="pre">api.routers.auth.</span></span><span class="sig-name descname"><span class="pre">refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">credentials</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HTTPAuthorizationCredentials</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Security(HTTPBearer)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.routers.auth.refresh_token" title="Link to this definition">¶</a></dt>
+<dd><p>Refresh an access token using a refresh token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>credentials</strong> (<em>HTTPAuthorizationCredentials</em>) – HTTP authorization credentials containing the refresh token.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – Database session.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Token model containing updated access and refresh tokens.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>TokenModel</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the refresh token is invalid or an error occurs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.routers.auth.request_email">
+<span class="sig-prename descclassname"><span class="pre">api.routers.auth.</span></span><span class="sig-name descname"><span class="pre">request_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RequestEmail</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BackgroundTasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.routers.auth.request_email" title="Link to this definition">¶</a></dt>
+<dd><p>Request email confirmation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>body</strong> (<em>RequestEmail</em>) – RequestEmail model containing the email.</p></li>
+<li><p><strong>background_tasks</strong> (<em>BackgroundTasks</em>) – Background tasks manager.</p></li>
+<li><p><strong>request</strong> (<em>Request</em>) – HTTP request.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – Database session.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Confirmation message or email sending status.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.routers.auth.signup">
+<span class="sig-prename descclassname"><span class="pre">api.routers.auth.</span></span><span class="sig-name descname"><span class="pre">signup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UserCreate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BackgroundTasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.routers.auth.signup" title="Link to this definition">¶</a></dt>
+<dd><p>Sign up a new user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user</strong> (<em>UserCreate</em>) – User information for sign up.</p></li>
+<li><p><strong>background_tasks</strong> (<em>BackgroundTasks</em>) – Background tasks manager.</p></li>
+<li><p><strong>request</strong> (<em>Request</em>) – HTTP request.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – Database session.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Created user and success message.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UserResponse</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the user already exists or an error occurs during sign up.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="rest-api-routes-contacts">
+<h1>REST API routes Contacts<a class="headerlink" href="#rest-api-routes-contacts" title="Link to this heading">¶</a></h1>
+<dl class="py function" id="module-api.routers.contacts">
+<dt class="sig sig-object py" id="api.routers.contacts.create_new_contact">
+<span class="sig-prename descclassname"><span class="pre">api.routers.contacts.</span></span><span class="sig-name descname"><span class="pre">create_new_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ContactCreate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#app.database.models.User" title="app.database.models.User"><span class="pre">User</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.routers.contacts.create_new_contact" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new contact.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contact</strong> (<em>ContactCreate</em>) – Contact information.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – Database session.</p></li>
+<li><p><strong>current_user</strong> (<a class="reference internal" href="#app.database.models.User" title="app.database.models.User"><em>User</em></a>) – Current user.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Created contact.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ContactResponse</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If an error occurs during contact creation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.routers.contacts.delete_contact">
+<span class="sig-prename descclassname"><span class="pre">api.routers.contacts.</span></span><span class="sig-name descname"><span class="pre">delete_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Path(PydanticUndefined)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#app.database.models.User" title="app.database.models.User"><span class="pre">User</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.routers.contacts.delete_contact" title="Link to this definition">¶</a></dt>
+<dd><p>Delete a contact by ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contact_id</strong> (<em>int</em>) – ID of the contact to delete.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – Database session.</p></li>
+<li><p><strong>current_user</strong> (<a class="reference internal" href="#app.database.models.User" title="app.database.models.User"><em>User</em></a>) – Current user.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None (for a successful delete operation).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the contact is not found or an error occurs during deletion.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.routers.contacts.read_contact">
+<span class="sig-prename descclassname"><span class="pre">api.routers.contacts.</span></span><span class="sig-name descname"><span class="pre">read_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#app.database.models.User" title="app.database.models.User"><span class="pre">User</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.routers.contacts.read_contact" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve a contact by ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contact_id</strong> (<em>int</em>) – ID of the contact to retrieve.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – Database session.</p></li>
+<li><p><strong>current_user</strong> (<a class="reference internal" href="#app.database.models.User" title="app.database.models.User"><em>User</em></a>) – Current user.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Retrieved contact.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ContactResponse</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the contact is not found or an error occurs during retrieval.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.routers.contacts.read_contacts">
+<span class="sig-prename descclassname"><span class="pre">api.routers.contacts.</span></span><span class="sig-name descname"><span class="pre">read_contacts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Query(0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Query(10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#app.database.models.User" title="app.database.models.User"><span class="pre">User</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.routers.contacts.read_contacts" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve a list of contacts with pagination.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>skip</strong> (<em>int</em>) – Number of contacts to skip.</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – Maximum number of contacts to retrieve.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – Database session.</p></li>
+<li><p><strong>current_user</strong> (<a class="reference internal" href="#app.database.models.User" title="app.database.models.User"><em>User</em></a>) – Current user.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of contacts.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[ContactResponse]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If an error occurs during contact retrieval.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.routers.contacts.update_contact_details">
+<span class="sig-prename descclassname"><span class="pre">api.routers.contacts.</span></span><span class="sig-name descname"><span class="pre">update_contact_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ContactUpdate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#app.database.models.User" title="app.database.models.User"><span class="pre">User</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.routers.contacts.update_contact_details" title="Link to this definition">¶</a></dt>
+<dd><p>Update contact details by ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contact_id</strong> (<em>int</em>) – ID of the contact to update.</p></li>
+<li><p><strong>contact_update</strong> (<em>ContactUpdate</em>) – Updated contact information.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – Database session.</p></li>
+<li><p><strong>current_user</strong> (<a class="reference internal" href="#app.database.models.User" title="app.database.models.User"><em>User</em></a>) – Current user.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Updated contact.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ContactResponse</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the contact is not found or an error occurs during update.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="rest-api-routes-birthday">
+<h1>REST API routes Birthday<a class="headerlink" href="#rest-api-routes-birthday" title="Link to this heading">¶</a></h1>
+<dl class="py function" id="module-api.routers.upcoming_birthdays">
+<dt class="sig sig-object py" id="api.routers.upcoming_birthdays.get_upcoming_birthdays_list">
+<span class="sig-prename descclassname"><span class="pre">api.routers.upcoming_birthdays.</span></span><span class="sig-name descname"><span class="pre">get_upcoming_birthdays_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.routers.upcoming_birthdays.get_upcoming_birthdays_list" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="#">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Welcome to REST API’s documentation!</a></li>
+<li><a class="reference internal" href="#rest-api-main">REST API Main</a><ul>
+<li><a class="reference internal" href="#module-app.main">REST API Main</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rest-api-database-models">REST API database Models</a><ul>
+<li><a class="reference internal" href="#app.database.models.Contact"><code class="docutils literal notranslate"><span class="pre">Contact</span></code></a><ul>
+<li><a class="reference internal" href="#app.database.models.Contact.additional_data"><code class="docutils literal notranslate"><span class="pre">Contact.additional_data</span></code></a></li>
+<li><a class="reference internal" href="#app.database.models.Contact.avatar"><code class="docutils literal notranslate"><span class="pre">Contact.avatar</span></code></a></li>
+<li><a class="reference internal" href="#app.database.models.Contact.birthday"><code class="docutils literal notranslate"><span class="pre">Contact.birthday</span></code></a></li>
+<li><a class="reference internal" href="#app.database.models.Contact.email"><code class="docutils literal notranslate"><span class="pre">Contact.email</span></code></a></li>
+<li><a class="reference internal" href="#app.database.models.Contact.first_name"><code class="docutils literal notranslate"><span class="pre">Contact.first_name</span></code></a></li>
+<li><a class="reference internal" href="#app.database.models.Contact.id"><code class="docutils literal notranslate"><span class="pre">Contact.id</span></code></a></li>
+<li><a class="reference internal" href="#app.database.models.Contact.last_name"><code class="docutils literal notranslate"><span class="pre">Contact.last_name</span></code></a></li>
+<li><a class="reference internal" href="#app.database.models.Contact.phone_number"><code class="docutils literal notranslate"><span class="pre">Contact.phone_number</span></code></a></li>
+<li><a class="reference internal" href="#app.database.models.Contact.user_id"><code class="docutils literal notranslate"><span class="pre">Contact.user_id</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#app.database.models.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a><ul>
+<li><a class="reference internal" href="#app.database.models.User.confirmed"><code class="docutils literal notranslate"><span class="pre">User.confirmed</span></code></a></li>
+<li><a class="reference internal" href="#app.database.models.User.contacts"><code class="docutils literal notranslate"><span class="pre">User.contacts</span></code></a></li>
+<li><a class="reference internal" href="#app.database.models.User.email"><code class="docutils literal notranslate"><span class="pre">User.email</span></code></a></li>
+<li><a class="reference internal" href="#app.database.models.User.hashed_password"><code class="docutils literal notranslate"><span class="pre">User.hashed_password</span></code></a></li>
+<li><a class="reference internal" href="#app.database.models.User.id"><code class="docutils literal notranslate"><span class="pre">User.id</span></code></a></li>
+<li><a class="reference internal" href="#app.database.models.User.refresh_token"><code class="docutils literal notranslate"><span class="pre">User.refresh_token</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rest-api-repository-repositories">REST API repository Repositories</a><ul>
+<li><a class="reference internal" href="#app.repository.repositories.UserRepository"><code class="docutils literal notranslate"><span class="pre">UserRepository</span></code></a><ul>
+<li><a class="reference internal" href="#app.repository.repositories.UserRepository.confirmed_email"><code class="docutils literal notranslate"><span class="pre">UserRepository.confirmed_email()</span></code></a></li>
+<li><a class="reference internal" href="#app.repository.repositories.UserRepository.create_user"><code class="docutils literal notranslate"><span class="pre">UserRepository.create_user()</span></code></a></li>
+<li><a class="reference internal" href="#app.repository.repositories.UserRepository.get_user_by_email"><code class="docutils literal notranslate"><span class="pre">UserRepository.get_user_by_email()</span></code></a></li>
+<li><a class="reference internal" href="#app.repository.repositories.UserRepository.update_token"><code class="docutils literal notranslate"><span class="pre">UserRepository.update_token()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rest-api-services-auth">REST API services Auth</a><ul>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager"><code class="docutils literal notranslate"><span class="pre">AuthManager</span></code></a><ul>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.ACCESS_TOKEN_EXPIRE_MINUTES"><code class="docutils literal notranslate"><span class="pre">AuthManager.ACCESS_TOKEN_EXPIRE_MINUTES</span></code></a></li>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.ALGORITHM"><code class="docutils literal notranslate"><span class="pre">AuthManager.ALGORITHM</span></code></a></li>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.SECRET_KEY"><code class="docutils literal notranslate"><span class="pre">AuthManager.SECRET_KEY</span></code></a></li>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.create_access_token"><code class="docutils literal notranslate"><span class="pre">AuthManager.create_access_token()</span></code></a></li>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.create_email_token"><code class="docutils literal notranslate"><span class="pre">AuthManager.create_email_token()</span></code></a></li>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.create_refresh_token"><code class="docutils literal notranslate"><span class="pre">AuthManager.create_refresh_token()</span></code></a></li>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.decode_refresh_token"><code class="docutils literal notranslate"><span class="pre">AuthManager.decode_refresh_token()</span></code></a></li>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.get_current_user"><code class="docutils literal notranslate"><span class="pre">AuthManager.get_current_user()</span></code></a></li>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.get_email_from_token"><code class="docutils literal notranslate"><span class="pre">AuthManager.get_email_from_token()</span></code></a></li>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.get_password_hash"><code class="docutils literal notranslate"><span class="pre">AuthManager.get_password_hash()</span></code></a></li>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.oauth2_scheme"><code class="docutils literal notranslate"><span class="pre">AuthManager.oauth2_scheme</span></code></a></li>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.pwd_context"><code class="docutils literal notranslate"><span class="pre">AuthManager.pwd_context</span></code></a></li>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.verify_password"><code class="docutils literal notranslate"><span class="pre">AuthManager.verify_password()</span></code></a></li>
+<li><a class="reference internal" href="#app.services.auth_manager.AuthManager.verify_token"><code class="docutils literal notranslate"><span class="pre">AuthManager.verify_token()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rest-api-services-email">REST API services Email</a><ul>
+<li><a class="reference internal" href="#app.services.email.send_email"><code class="docutils literal notranslate"><span class="pre">send_email()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rest-api-routes-auth">REST API routes Auth</a><ul>
+<li><a class="reference internal" href="#api.routers.auth.confirmed_email"><code class="docutils literal notranslate"><span class="pre">confirmed_email()</span></code></a></li>
+<li><a class="reference internal" href="#api.routers.auth.login"><code class="docutils literal notranslate"><span class="pre">login()</span></code></a></li>
+<li><a class="reference internal" href="#api.routers.auth.refresh_token"><code class="docutils literal notranslate"><span class="pre">refresh_token()</span></code></a></li>
+<li><a class="reference internal" href="#api.routers.auth.request_email"><code class="docutils literal notranslate"><span class="pre">request_email()</span></code></a></li>
+<li><a class="reference internal" href="#api.routers.auth.signup"><code class="docutils literal notranslate"><span class="pre">signup()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rest-api-routes-contacts">REST API routes Contacts</a><ul>
+<li><a class="reference internal" href="#api.routers.contacts.create_new_contact"><code class="docutils literal notranslate"><span class="pre">create_new_contact()</span></code></a></li>
+<li><a class="reference internal" href="#api.routers.contacts.delete_contact"><code class="docutils literal notranslate"><span class="pre">delete_contact()</span></code></a></li>
+<li><a class="reference internal" href="#api.routers.contacts.read_contact"><code class="docutils literal notranslate"><span class="pre">read_contact()</span></code></a></li>
+<li><a class="reference internal" href="#api.routers.contacts.read_contacts"><code class="docutils literal notranslate"><span class="pre">read_contacts()</span></code></a></li>
+<li><a class="reference internal" href="#api.routers.contacts.update_contact_details"><code class="docutils literal notranslate"><span class="pre">update_contact_details()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rest-api-routes-birthday">REST API routes Birthday</a><ul>
+<li><a class="reference internal" href="#api.routers.upcoming_birthdays.get_upcoming_birthdays_list"><code class="docutils literal notranslate"><span class="pre">get_upcoming_birthdays_list()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">REST API  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to REST API’s documentation!</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2023, Igor.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.3.
+    </div>
+  </body>
+</html>
