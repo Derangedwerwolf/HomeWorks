@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
 
+
+load_dotenv()
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,13 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-e1z0@v$k*h$#ts2n3t*%q7xw)ofvy7%c#gy)l*)hr0e3n)bflm"
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['https://personalassistant.fly.dev', 'https://e589-77-65-92-170.ngrok-free.app']
 
 # LOGIN_URL = "/fake-login/"
 
@@ -44,10 +50,6 @@ INSTALLED_APPS = [
     "Notes",
     "Utils",
     "Users",
-]
-
-TEST_APPS = [
-    "Notes.tests",  # Здесь также замените 'yourapp' на название вашего Django приложения
 ]
 
 MIDDLEWARE = [
@@ -86,16 +88,45 @@ WSGI_APPLICATION = "PersonalAssistant.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "Django_team_3",
-        "USER": "postgres",
-        "PASSWORD": "567234",
-        "HOST": "195.201.150.230",
-        "PORT": "5433",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('NAME'),
+        'USER': os.environ.get('USER'),
+        'PASSWORD': os.environ.get('PASSWORD'),
+        'HOST': os.environ.get('HOST'),
+        'PORT': os.environ.get('PORT'),
     }
 }
 
+# REDIS_URL = 'redis://redis-13477.c293.eu-central-1-1.ec2.cloud.redislabs.com:13477/1'
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://:vRFRl1Ub2bWgMve6QsMmfap1y4Bw9vSY@redis-13477.c293.eu-central-1-1.ec2.cloud.redislabs.com:13477",
+
+        # Укажите ваши данные:
+        "HOST": "redis-13477.c293.eu-central-1-1.ec2.cloud.redislabs.com",  # Адрес сервера Redis
+        "PORT": "13477",      # Порт сервера Redis
+        "DB": "1",    # Номер базы данных (обычно 0)
+
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': 'redis://redis-13477.c293.eu-central-1-1.ec2.cloud.redislabs.com:13477',
+#         'USERNAME': 'default',
+#         'PASSWORD': 'vRFRl1Ub2bWgMve6QsMmfap1y4Bw9vSY',
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#         }
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -137,3 +168,16 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_STARTTLS = False
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+

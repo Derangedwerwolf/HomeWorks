@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db import IntegrityError
-from django.db.models import Count
 from django.http import HttpResponseRedirect
 
 from django.shortcuts import render, redirect
@@ -15,10 +14,11 @@ from Notes.forms import NoteForm, TagForm, NoteSearchForm
 from Notes.models import Tag, Note
 
 
+@login_required
 def main(request):
     notes = Note.objects.filter(user=request.user)
     context = {"notes": notes}
-    return render(request, "Notes/index.html", context)
+    return render(request, "notes/index.html", context)
 
 
 @method_decorator(login_required, name="dispatch")
@@ -57,22 +57,15 @@ class NoteView(BaseNoteView):
         - HttpResponse: Rendered template response.
         """
 
-        # Instantiate the form with posted data
         form = self.form_class(request.user, request.POST)
 
-        # Check if the form is valid
         if not form.is_valid():
-            # If not valid, re-render the template with form errors
             return render(request, self.template_name, self.get_context())
 
         try:
-            # Create a new note but don't save to DB yet (commit=False)
             new_note = form.save(commit=False)
-            # Assign the current user to the note's user field
             new_note.user = request.user
-            # Save the note to the DB
             new_note.save()
-            # Save many-to-many data (if any)
             form.save_m2m()
 
         except IntegrityError as e:
@@ -83,7 +76,6 @@ class NoteView(BaseNoteView):
 
                 return render(request, self.template_name, self.get_context())
 
-        # Redirect to the main notes page after successful note creation
         return redirect("notes:index")
 
 
@@ -121,10 +113,7 @@ class NoteSearchView(BaseNoteView):
         ]
 
         notes = self.get_queryset().filter().order_by("-created_at")
-        # print(notes.query)
-        print(notes.all())
 
-        # Если не указаны критерии поиска, вернуть последние 10 записей
         if not (search_query or include_tags or exclude_tags):
             notes = notes[:10]
         else:
@@ -159,31 +148,19 @@ class NoteRemoveView(BaseNoteView):
     template_name = "notes/confirm-delete.html"
 
     def get(self, request, *args, **kwargs):
-        # Тут мы просто отображаем страницу подтверждения
         return render(request, self.template_name)
 
-    # def post(self, request, *args, **kwargs):
-    #     # Когда пользователь подтверждает удаление
-    #     note_id = kwargs.get(
-    #         "pk"
-    #     )  # Предположим, что идентификатор передается как часть URL
-    #     note = self.get_queryset().get(pk=note_id)
-    #     note.delete()
-
     def post(self, request, *args, **kwargs):
-        # Когда пользователь подтверждает удаление
         note_id = kwargs.get(
             "pk"
-        )  # Предположим, что идентификатор передается как часть URL
+        )
         try:
             note = self.get_queryset().get(pk=note_id)
             note.delete()
         except Note.DoesNotExist:
-            # Можно добавить сообщение об ошибке или просто перенаправить на главную
             pass
 
         return HttpResponseRedirect(reverse("notes:index"))
-        # return reverse("notes:index")
 
 
 class TagView(BaseNoteView):
